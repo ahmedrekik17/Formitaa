@@ -1,0 +1,96 @@
+<app-navbar></app-navbar>
+<body class="font-poppins antialiased flex  mr-6">
+    <div id="container" class="h-full w-screen flex">
+      <!-- Sidebar (Left) -->
+      <app-sidebar-profile></app-sidebar-profile>
+  
+      <!-- Main Content (Right) -->
+      <app-modal-message [show]="showModal" [message]="modalMessage" [type]="modalType"
+      (closeEvent)="showModal = false">
+  </app-modal-message>
+      <!-- Profile section -->
+<div class="py-6 px-4 sm:p-6 lg:pb-8">
+    <div>
+      <h2 class="text-lg font-medium leading-6 text-gray-900">Profile</h2>
+    </div>
+  
+    <div class="mt-6 flex flex-col lg:flex-row">
+      <div class="flex-grow space-y-6">
+        <div class="w-[250px]">
+          <label for="username" class="block text-sm font-medium text-gray-700">Nom d'utilisateur</label>
+          <div class="mt-1 flex rounded-md shadow-sm">
+            <span>{{ user.nom_et_prenom }}</span>
+          </div>
+        </div>
+        <div class="w-[250px]">
+          <label for="cin" class="block text-sm font-medium text-gray-700">CIN</label>
+          <div class="mt-1 flex rounded-md shadow-sm">
+            <span>{{ user.cin}}</span>
+          </div>
+        </div>
+  
+      </div>
+  
+      <div class="mt-6 flex-grow lg:mt-0 lg:ml-6 lg:flex-shrink-0 lg:flex-grow-0">
+        <p class="text-sm font-medium text-gray-700" aria-hidden="true">Photo</p>
+        <div class="mt-1 lg:hidden">
+          <div class="flex items-center">
+            <div class="inline-block h-12 w-12 flex-shrink-0 overflow-hidden rounded-full" aria-hidden="true">
+              <img class="h-full w-full rounded-full" src="../../assets/images/profilelogo.png" alt="">
+            </div>
+            <div class="ml-5 rounded-md shadow-sm">
+              <div class="group relative flex items-center justify-center rounded-md border border-gray-300 py-2 px-3 focus-within:ring-2 focus-within:ring-sky-500 focus-within:ring-offset-2 hover:bg-gray-50">
+                <label for="mobile-user-photo" class="pointer-events-none relative text-sm font-medium leading-4 text-gray-700">
+                  <span>Changer</span>
+                  <span class="sr-only"> photo de l'utilisateur</span>
+                </label>
+                <input id="mobile-user-photo" name="user-photo" type="file" (change)="onPhotoChange($event)" class="absolute h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0">
+              </div>
+            </div>
+          </div>
+        </div>
+  
+        <div class="relative hidden overflow-hidden rounded-full lg:block">
+          <img class="relative h-40 w-40 rounded-full" src="../../assets/images/profilelogo.png" alt="">
+          <label for="desktop-user-photo" class="absolute inset-0 flex h-full w-full items-center justify-center bg-black bg-opacity-75 text-sm font-medium text-white opacity-0 focus-within:opacity-100 hover:opacity-100">
+            <span>Changer</span>
+            <span class="sr-only"> photo de l'utilisateur</span>
+            <input type="file" id="desktop-user-photo" name="user-photo" (change)="onPhotoChange($event)" class="absolute inset-0 h-full w-full cursor-pointer rounded-md border-gray-300 opacity-0">
+          </label>
+        </div>
+      </div>
+    </div>
+  
+    <button (click)="showModifierForm()" class="px-4 py-2 bg-blue-500 text-white rounded-md">Modifier Profile</button>
+
+    <div *ngIf="showForm" class="mt-6"> 
+        <div class="grid grid-cols-12 gap-6">
+          <div class="col-span-12 sm:col-span-6">
+            <label for="nomprenom" class="block text-sm font-medium text-gray-700">nom prenom</label>
+            <input type="text" name="nomprenom" id="nomprenom" [(ngModel)]="user.nom_et_prenom" class="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm">
+          </div>
+      
+          <div class="col-span-12 sm:col-span-6">
+            <label for="nomprenomarab" class="block text-sm font-medium text-gray-700">Nom prenom arab</label>
+            <input type="text" name="nomprenomarab" id="nomprenomarab" [(ngModel)]="user.nom_et_prenom_arab" class="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm">
+          </div>
+      
+    
+          <div class="col-span-12 sm:col-span-6">
+            <label for="tel" class="block text-sm font-medium text-gray-700">Telephone</label>
+            <input type="tel" name="Telephone" id="Telephone" [(ngModel)]="user.phoneNumber" class="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm">
+          </div>
+    
+          <div class="col-span-12 sm:col-span-6">
+            <label for="email" class="block text-sm font-medium text-gray-700">email</label>
+            <input type="email" name="email" id="email" [(ngModel)]="user.email" class="mt-1 block w-full rounded-md border border-gray-300 py-2 px-3 shadow-sm focus:border-sky-500 focus:outline-none focus:ring-sky-500 sm:text-sm">
+          </div>
+        </div>
+        <button (click)="saveProfile()" class="mt-6 px-4 py-2 bg-blue-600 text-white rounded-md">Save</button>
+    </div>
+
+  </div>
+
+    </div>
+  </body>
+  

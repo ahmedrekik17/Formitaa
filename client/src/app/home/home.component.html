@@ -1,0 +1,111 @@
+<app-navbar></app-navbar>
+<!-- Hero Section -->
+        <section class="relative bg-gradient-to-br from-blue-900 to-indigo-800 text-white overflow-hidden">
+            <div class="absolute inset-0 bg-black opacity-50"></div>
+            <div class="absolute inset-0 bg-cover bg-center bg-gray-500"></div>
+            
+            <div class="container mx-auto px-4 py-24 md:py-32 relative z-10">
+                <div class="flex flex-col md:flex-row items-center justify-between">
+                    <!-- Left Side: Company Info -->
+                    <div class="w-full md:w-1/2 mb-12 md:mb-0">
+                        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
+                            Innover.<br>Transformer.<br>Réussir.
+                            
+                        </h1>
+                        <p class="text-xl mb-8 text-gray-300">Accédez à des opportunités de formation uniques.</p>
+                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                            <a routerLink="/nosformation" class="bg-white text-blue-900 font-semibold px-8 py-3 rounded-full hover:bg-blue-100 transition duration-300 text-center">Commencer</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Right Side: Features -->
+                    <div class="w-full md:w-1/2 md:pl-12">
+                        <img src="../../assets/images/header-hero.png" alt="">
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Decorative Element -->
+            <div class="absolute bottom-0 left-0 right-0">
+                <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
+                </svg>
+                
+                
+            </div>
+        </section>
+        <section id="about" class="relative mt-40 pt-20 px-6 mx-auto">
+            <div class="container px-6 mx-auto">
+                <div class="row flex flex-wrap lg:flex-nowrap">
+        
+                    <!-- Left side with boxes -->
+                    <div class="w-full lg:w-1/2 m-auto grid gap-8 grid-cols-1">
+                        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+                            <div class="about-content">
+                                <div class="section-title">
+                                    <div class="bg-blue-500 h-1 w-10 mb-2"></div>
+                                    <h3 class="text-lg font-semibold text-gray-800">INNOVER</h3>
+                                </div>
+                                <p class="text-gray-600"> Adopter de nouvelles idées, remettre en 
+                                question les normes, et créer des solutions informatiques révolutionnaires. 
+                                L'innovation alimente l'avenir de la technologie.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+                            <div class="about-content">
+                                <div class="section-title">
+                                    <div class="bg-blue-500 h-1 w-10 mb-2"></div>
+                                    <h3 class="text-lg font-semibold text-gray-800">TRANSFORMER</h3>
+                                </div>
+                                <p class="text-gray-600">Exploiter la technologie pour impulser des changements fondamentaux,
+                                    remodeler les organisations et autonomiser les individus.
+                                    Les compétences informatiques transformatrices sont essentielles.</p>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
+                            <div class="about-content">
+                                <div class="section-title">
+                                    <div class="bg-blue-500 h-1 w-10 mb-2"></div>
+                                    <h3 class="text-lg font-semibold text-gray-800">REUSSIR</h3>
+                                </div>
+                                <p class="text-gray-600">Maîtriser les compétences essentielles, 
+                                    s'adapter au changement et contribuer à des avancées informatiques significatives. 
+                                    La réussite en informatique est une question d'impact.</p>
+                            </div>
+                        </div>
+                    </div>
+        
+                    <!-- Right side with image -->
+                    <div class="w-full lg:w-1/2">
+                        <div class="mx-4 mt-12 text-center about-image wow fadeInRightBig" data-wow-duration="1s"
+                            data-wow-delay="0.5s">
+                            <img class="rounded-md" src="https://th.bing.com/th/id/R.82696d47905beeb58b4de83e60946811?rik=lbAjInF9kOu32g&pid=ImgRaw&r=0" alt="about">
+                        </div> <!-- about image -->
+                    </div>
+                </div> <!-- row -->
+            </div> <!-- container -->
+        </section>
+        <section class="bg-gray-100 py-16 mt-60 mb-40">
+            <div class="container px-6 mx-auto text-center">
+              <h2 class="text-3xl font-bold text-gray-800">Ce que disent nos étudiants</h2>
+              <div class="flex justify-center mt-8 space-x-8">
+                <!-- Loop through the latest comments -->
+                <div *ngFor="let comment of latestComments" class="w-1/3 p-4 bg-white rounded-lg shadow-lg">
+                  <p class="mt-4 text-indigo-500 font-semibold">{{ comment.user.nom_et_prenom }}</p>
+                  <p class="text-gray-600">"{{ comment.comment }}"</p>
+                </div>
+          
+                <!-- Display a message if no comments are available -->
+                <div *ngIf="latestComments.length === 0" class="w-full text-center">
+                  <p class="text-gray-600">Aucun commentaire disponible pour le moment.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        
+
+<app-footer></app-footer>
+        
+
+
+

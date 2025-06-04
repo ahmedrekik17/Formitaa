@@ -1,0 +1,62 @@
+<div class="fixed top-0 left-0 w-full h-full bg-gray-900 bg-opacity-75 flex items-center justify-center z-50"
+     role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <!-- Adjusted max-width for better responsiveness -->
+    <div class="bg-white rounded-xl shadow-lg overflow-hidden w-full max-w-sm sm:max-w-md md:max-w-lg mx-3 sm:mx-4">
+
+        <div class="px-4 py-5 sm:px-6 sm:py-6">
+            <h3 class="text-xl sm:text-2xl font-semibold text-gray-800" id="modal-title">
+                Détails du Formateur
+            </h3>
+            <p class="mt-2 sm:mt-3 text-gray-600 text-sm sm:text-base">
+                Informations détaillées sur le formateur sélectionné.
+            </p>
+        </div>
+
+        <div class="divide-y divide-gray-200">
+            <div class="px-4 py-3 sm:px-6">
+                <div class="grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2">
+                    <!-- Adjusted spacing and font sizes for smaller screens -->
+                    <div>
+                        <label class="block text-xs sm:text-sm font-medium text-gray-700">Nom et Prénom</label>
+                        <p class="mt-1 text-gray-900 text-sm break-words">{{ formateur?.nom_et_prenom || 'N/A' }}</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs sm:text-sm font-medium text-gray-700">اسم و لقب</label>
+                        <p class="mt-1 text-gray-900 text-sm break-words">{{ formateur?.nom_et_prenom_arab || 'N/A' }}</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs sm:text-sm font-medium text-gray-700">Email</label>
+                        <p class="mt-1 text-gray-900 text-sm break-words">{{ formateur?.email || 'N/A' }}</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs sm:text-sm font-medium text-gray-700">Numéro de Téléphone</label>
+                        <p class="mt-1 text-gray-900 text-sm break-words">{{ formateur?.phoneNumber || 'N/A' }}</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs sm:text-sm font-medium text-gray-700">Spécialité</label>
+                        <p class="mt-1 text-gray-900 text-sm break-words">{{ formateur?.specialite || 'N/A' }}</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs sm:text-sm font-medium text-gray-700">Expérience</label>
+                        <p class="mt-1 text-gray-900 text-sm break-words">{{ formateur?.experience || 'N/A' }}</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs sm:text-sm font-medium text-gray-700">Statut</label>
+                        <p class="mt-1 text-gray-900 text-sm break-words">{{ formateur?.status || 'N/A' }}</p>
+                    </div>
+                    <div>
+                        <label class="block text-xs sm:text-sm font-medium text-gray-700">Disponible</label>
+                        <p class="mt-1 text-gray-900 text-sm break-words">{{ formateur?.formateur_disponible ? 'Oui' : 'Non' }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-gray-50 px-4 py-3 sm:px-6 flex justify-end">
+            <button (click)="onClose()" type="button"
+                    class="ml-2 inline-flex justify-center py-2 px-3 border border-transparent shadow-sm text-xs sm:text-sm font-medium rounded-md text-white bg-indigo-500 hover:bg-indigo-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                Fermer
+            </button>
+        </div>
+    </div>
+</div>

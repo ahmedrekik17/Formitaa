@@ -1,0 +1,67 @@
+/* Base table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 1rem; /* Add spacing below the table */
+}
+
+th,
+td {
+    padding: 0.75rem;
+    text-align: left;
+    border-bottom: 1px solid #dee2e6; /* Bootstrap's default border color */
+}
+
+th {
+    font-weight: bold;
+}
+
+/* Responsive styles for screens smaller than 768px (sm breakpoint in Tailwind) */
+@media (max-width: 767.98px) {
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+        display: block; /* Make all elements block-level */
+    }
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
+    }
+
+    tr {
+        border: 1px solid #ced4da; /* So each row is separated by borders */
+        margin-bottom: 0.5rem; /* Spacing between rows */
+    }
+
+    td {
+        /* Behave like a "row" */
+        border: none;
+        border-bottom: 1px solid #ced4da;
+        position: relative;
+        padding-left: 50%; /* Space for the header label */
+        text-align: left;
+    }
+
+    td:before {
+        /* Now like a table header */
+        position: absolute;
+        top: 50%;
+        left: 0.75rem;
+        width: 45%;
+        transform: translateY(-50%); /* Vertically center the header text */
+        padding-right: 0.5rem;
+        white-space: nowrap;
+        content: attr(data-columnheader); /* Get the header text from the attribute */
+        font-weight: bold;
+    }
+
+    /* Remove bottom border from the last td in each tr, if needed */
+    tr:last-child td {
+        border-bottom: none;
+    }
+}

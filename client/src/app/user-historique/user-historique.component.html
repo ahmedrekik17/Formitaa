@@ -1,0 +1,49 @@
+<app-navbar></app-navbar>
+<body class="font-poppins antialiased flex mr-6">
+  <div id="container" class="h-full w-screen flex">
+    <!-- Sidebar (Left) -->
+    <app-sidebar-userhistorique></app-sidebar-userhistorique>
+
+    <!-- Main Content (Right) -->
+    <section class="container mx-auto p-6 font-mono">
+      <!-- Display evaluation count with proper design -->
+      <h1 class="text-3xl font-semibold text-gray-800 mb-6">
+        Vous avez pratiqué {{ evaluations.length }} formations
+      </h1>
+      
+      <div class="w-full mb-8 overflow-hidden rounded-lg shadow-lg">
+        <div class="w-full overflow-x-auto">
+          <table class="w-full">
+            <thead>
+              <tr class="text-md font-semibold tracking-wide text-left text-gray-900 bg-gray-100 uppercase border-b border-gray-600">
+                <th class="px-4 py-3">Nom de la Formation</th>
+                <th class="px-4 py-3">Date de la Formation</th>
+                <th class="px-4 py-3">Note</th>
+                <th class="px-4 py-3">Statut</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white">
+              <tr *ngFor="let evaluation of evaluations" class="text-gray-700 border">
+                <td class="px-4 py-3">{{ evaluation.training.theme_formation }}</td>
+                <td class="px-4 py-3">{{ evaluation.training.date_debut | date:'dd/MM/yyyy' }} - {{ evaluation.training.date_fin | date:'dd/MM/yyyy' }}</td>
+                <td class="px-4 py-3">{{ evaluation.note }}</td>
+                <td class="px-4 py-3">
+                  <!-- Check the value of note and assign status -->
+                  <span *ngIf="evaluation.note !== null"
+                    class="px-2 py-1 font-semibold leading-tight rounded-sm"
+                    [ngClass]="{
+                    'text-red-700 bg-red-100': evaluation.note < 10, 
+                    'text-orange-700 bg-orange-100': evaluation.note >= 10 && evaluation.note < 16,
+                    'text-green-700 bg-green-100': evaluation.note >= 16
+                    }">
+                    {{ getStatus(evaluation.note) }}
+                  </span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>

@@ -1,0 +1,15 @@
+.rtl {
+    direction: rtl;
+    text-align: right;
+}
+
+/* Apply RTL to placeholder */
+input.rtl::placeholder {
+    text-align: right;
+}
+
+/* Ensure input fields align for RTL text */
+input.rtl {
+    text-align: right;
+    direction: rtl;
+}

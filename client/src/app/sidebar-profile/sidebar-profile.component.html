@@ -1,0 +1,40 @@
+<body class="font-poppins antialiased">
+    <div id="view" class="h-full flex flex-row">
+      <!-- Sidebar (Persistent) -->
+      <div id="sidebar" class="bg-white h-screen md:block shadow-xl px-3 w-30 md:w-60 lg:w-60 overflow-x-hidden transition-transform duration-300 ease-in-out">
+        <div class="space-y-6 md:space-y-10 mt-10">
+          <h1 class="font-bold text-4xl text-center md:hidden">D<span class="text-indigo-600">.</span></h1>
+          <h1 class="hidden md:block font-bold text-sm md:text-xl text-center">Tableau de bord<span class="text-indigo-600">.</span></h1>
+  
+          <!-- Profile Section -->
+          <div id="profile" class="space-y-3">
+            <img src="../../assets/images/profilelogo.png" class="w-10 md:w-16 rounded-full mx-auto" />
+            <div>
+              <h2 class="font-medium text-xs md:text-sm text-center text-indigo-500">{{user?.nom_et_prenom}}</h2>
+              <p class="text-xs text-gray-500 text-center">Participant</p>
+            </div>
+          </div>
+  
+          <!-- Menu -->
+          <div id="menu" class="flex flex-col space-y-2">
+            <a routerLink="/profile" 
+             routerLinkActive="bg-indigo-500 text-white text-base" 
+             class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-indigo-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out">
+              <svg class="w-6 h-6 fill-current inline-block" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z" clip-rule="evenodd"/>
+              </svg>
+              <span>Profile</span>
+            </a>
+
+            <a routerLink="/historique" class="text-sm font-medium text-gray-700 py-2 px-2 hover:bg-indigo-500 hover:text-white hover:text-base rounded-md transition duration-150 ease-in-out">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor" class="w-6 h-6 inline-block">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+              </svg>
+              <span>Historique des formations</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  

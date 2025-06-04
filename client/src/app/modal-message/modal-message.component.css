@@ -1,0 +1,9 @@
+/* Optional styling for the modal */
+.bg-opacity-50 {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  
+  button:hover {
+    transition: background-color 0.3s ease;
+  }
+  

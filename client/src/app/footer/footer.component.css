@@ -1,0 +1,55 @@
+.footer {
+    padding: 30px 0px;
+    font-family: 'Play', sans-serif;
+    text-align: center;
+}
+
+.footer .roww {
+    width: 100%;
+    padding: 0.6% 0%;
+    font-size: 0.9em;
+    font-weight: bold;
+
+}
+
+.footer .roww a {
+    text-decoration: none;
+    transition: 0.5s;
+    font-weight: bold;
+
+}
+
+.footer .roww a:hover {
+    color: rgb(89, 88, 88)
+}
+
+.footer .roww ul {
+    width: 100%;
+}
+
+.footer .roww ul li {
+    display: inline-block;
+    margin: 0px 30px;
+}
+
+.footer .roww a i {
+    font-size: 2em;
+    margin: 0% 1%;
+}
+
+@media (max-width:720px) {
+    .footer {
+        text-align: left;
+        padding: 5%;
+    }
+
+    .footer .roww ul li {
+        display: block;
+        margin: 10px 0px;
+        text-align: left;
+    }
+
+    .footer .roww a i {
+        margin: 0% 3%;
+    }
+}

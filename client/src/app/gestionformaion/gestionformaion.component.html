@@ -1,0 +1,207 @@
+<body class="font-poppins antialiased flex mr-6">
+  <div id="container" class="h-full w-screen flex">
+      <!-- Sidebar (Left) - Collapsible on Small Screens -->
+      <app-sidebar-gestionformaion
+      (closeSidebar)="closeSideBar()"
+      class="shadow-lg z-50 w-60 h-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out"
+      [ngClass]="{'transform translate-x-0': isSidebarOpen, '-translate-x-full sm:translate-x-0': !isSidebarOpen}">
+    </app-sidebar-gestionformaion>
+            <!-- Main Content (Right) -->
+            <div class="flex-grow container mx-auto p-4" [ngClass]="{'ml-0 sm:ml-60': !isSidebarOpen}">
+                <!-- Mobile Menu Button -->
+                <div class="flex items-center justify-between mb-8">
+
+                <button class="sm:hidden p-2 bg-gray-100 rounded-md mb-4" (click)="toggleSidebar()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <h1 class="text-3xl font-extrabold text-gray-800 tracking-tight">Gestion des Formations</h1>
+                </div>
+
+    
+
+
+                <!-- Navigation Tabs -->
+                <div class="bg-white shadow-md rounded-2xl overflow-hidden mb-8">
+                    <nav class="flex space-x-4 px-6 py-4" aria-label="Tabs">
+                        <a routerLink="/gestionformation/afficherformation" routerLinkActive="bg-indigo-600 text-white shadow-inner" class="px-5 py-3 rounded-xl text-sm font-semibold text-gray-600 hover:bg-indigo-100 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition-colors duration-200">
+                            Afficher les formations
+                        </a>
+                        <a routerLink="/gestionformation/ajouterformation" routerLinkActive="bg-indigo-600 text-white shadow-inner" class="px-5 py-3 rounded-xl text-sm font-semibold text-gray-600 hover:bg-indigo-100 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition-colors duration-200">
+                            Ajouter formation
+                        </a>
+                    </nav>
+                </div>
+
+          <!-- Modal Component -->
+          <app-modal-message
+              [show]="showModal"
+              [message]="modalMessage"
+              [type]="modalType"
+              (closeEvent)="showModal = false"
+          ></app-modal-message>
+          <app-confirmation-modal
+              [show]="showConfirmationModal"
+              [message]="confirmationMessage"
+              (confirm)="onDeleteConfirmed($event)"
+          ></app-confirmation-modal>
+
+
+          <!-- Search Bar -->
+          <div class="bg-white shadow-md rounded-2xl p-5 mb-8">
+            <label for="search" class="sr-only">Search</label>
+            <div class="relative">
+                <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg class="w-5 h-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                    </svg>
+                </div>
+                <input [(ngModel)]="keyword" (ngModelChange)="onSearchChange()" type="text" id="search" class="block p-4 pl-12 w-full text-sm text-gray-900 bg-gray-50 rounded-xl border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Rechercher par N° ACTION">
+            </div>
+        </div>
+
+          <div class="bg-white p-4 shadow-lg rounded-lg">
+              <h1 class="font-bold text-base">Toutes les formations</h1>
+              <div class="mt-4">
+                  <div class="flex flex-col">
+                      <div class="-my-2 overflow-x-auto">
+                          <div class="py-2 align-middle inline-block min-w-full">
+                              <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg bg-white">
+                                <table class="w-[50px] divide-y divide-gray-200">
+                                  <thead>
+                                      <tr>
+                                          <th class="px-6 py-3 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                              <div class="flex cursor-pointer">
+                                                  <span class="mr-2">N° ACTION</span>
+                                              </div>
+                                          </th>
+                                          <th class="px-6 py-3 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                              <div class="flex cursor-pointer">
+                                                  <span class="mr-2">THÈME FORMATION</span>
+                                              </div>
+                                          </th>
+                                          <th class="px-6 py-3 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                              <div class="flex cursor-pointer">
+                                                  <span class="mr-2">FORMATEUR</span>
+                                              </div>
+                                          </th>
+                                          <th class="px-6 py-3 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                              <div class="flex cursor-pointer">
+                                                  <span class="mr-2">LIEU</span>
+                                              </div>
+                                          </th>
+                                          <th class="px-6 py-3 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                              <div class="flex cursor-pointer">
+                                                  <span class="mr-2">ÉTAT</span>
+                                              </div>
+                                          </th>
+                                          <th class="px-6 py-3 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                              <div class="flex cursor-pointer">
+                                                  <span class="mr-2">ACTION</span>
+                                              </div>
+                                          </th>
+                                      </tr>
+                                  </thead>
+                                  <tbody class="bg-white divide-y divide-gray-200">
+                                      <tr *ngFor="let training of paginatedTrainings">
+                                          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-columnheader="N° ACTION">
+                                              {{ training.n_action }}
+                                          </td>
+                                          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-columnheader="THÈME FORMATION">
+                                              {{ training.theme_formation }}
+                                          </td>
+                                          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-columnheader="FORMATEUR">
+                                              {{ training.formateur.nom_et_prenom }}
+                                          </td>
+                                          <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-columnheader="LIEU">
+                                              {{ training.lieu_de_deroulement }}
+                                          </td>
+                                          <td class="px-6 py-4 whitespace-nowrap text-sm" data-columnheader="ÉTAT">
+                                              <div class="flex" [ngClass]="{
+                                                  'text-green-500': training.etat === 'En cours',
+                                                  'text-orange-500': training.etat === 'Annoncé',
+                                                  'text-red-500': training.etat === 'Terminé'
+                                                  }">
+                                                  <svg *ngIf="training.etat === 'En cours'" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1"
+                                                      fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                  </svg>
+                                                  <svg *ngIf="training.etat === 'Annoncé'" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1"
+                                                      fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v14m7-7H5" />
+                                                  </svg>
+                                                  <svg *ngIf="training.etat === 'Terminé'" xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1"
+                                                      fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                  </svg>
+                                                  <p>{{ training.etat }}</p>
+                                              </div>
+                                          </td>
+                                          <td class="px-6 py-4 whitespace-nowrap text-sm" data-columnheader="ACTION">
+                                              <div class="flex space-x-4">
+                                                  <a [routerLink]="['/gestionformation/modifierformation', training._id]"
+                                                      class="text-blue-500 hover:text-blue-600">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24"
+                                                          stroke="currentColor">
+                                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                              d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                                      </svg>
+                                                      <p>Modifier</p>
+                                                  </a>
+                                                  <a (click)="confirmDeleteTraining(training._id)" class="text-red-500 hover:text-red-600 cursor-pointer">
+                                                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1 ml-3" fill="none" viewBox="0 0 24 24"
+                                                          stroke="currentColor">
+                                                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                              d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                      </svg>
+                                                      <p>Supprimer</p>
+                                                  </a>
+                                              </div>
+                                          </td>
+                                      </tr>
+                                  </tbody>
+                              </table>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <!-- Pagination Controls -->
+              <div class="flex justify-end">
+                <nav class="relative z-0 inline-flex flex-wrap -space-x-px rounded-md shadow-md">
+                  <!-- Previous Page Button -->
+                  <a href="javascript:void(0)" (click)="goToPage(currentPage - 1)" 
+                     class="relative inline-flex items-center rounded-l-md p-4 text-lg text-gray-500 hover:bg-gray-300 transition duration-200 ease-in-out">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M12.79 5.23a.75.75 0 01-.02 1.06L8.832 10l3.938 3.71a.75.75 0 11-1.04 1.08l-4.5-4.25a.75.75 0 010-1.08l4.5-4.25a.75.75 0 011.06.02z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                
+                  <!-- Dynamic Page Numbers -->
+                  <a *ngFor="let page of pageNumbers; let i = index"
+                     [class.bg-indigo-500]="currentPage === i + 1" 
+                     [class.text-white]="currentPage === i + 1" 
+                     (click)="goToPage(i + 1)"
+                     class="p-4 text-lg text-gray-500 hover:bg-indigo-500 hover:text-white transition duration-200 ease-in-out">
+                    {{ i + 1 }}
+                  </a>
+                
+                  <!-- Next Page Button -->
+                  <a href="javascript:void(0)" (click)="goToPage(currentPage + 1)" 
+                     class="relative inline-flex items-center rounded-r-md p-4 text-lg text-gray-500 hover:bg-gray-300 transition duration-200 ease-in-out">
+                    <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                      <path fill-rule="evenodd" d="M7.21 5.23a.75.75 0 01.02 1.06L11.168 10l-3.938 3.71a.75.75 0 011.04 1.08l4.5-4.25a.75.75 0 010-1.08l-4.5-4.25a.75.75 0 01-1.06.02z" clip-rule="evenodd" />
+                    </svg>
+                  </a>
+                </nav>
+              </div>
+          </div>
+      </div>
+  </div>
+</body>

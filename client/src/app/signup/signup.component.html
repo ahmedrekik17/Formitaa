@@ -1,0 +1,159 @@
+<div class="mat-dialog-container bg-gray-100">
+    <div class="flex justify-center items-center">
+      <div class="lg:p-36 md:p-52 sm:20 p-8 w-full">
+        <app-alert-message
+        [message]="alertMessage" 
+        [type]="alertType" 
+        [show]="showAlert">
+        </app-alert-message>
+        <h1 class="text-2xl font-semibold mb-4 text-indigo-500">Crée un compte</h1>
+  
+        <form [formGroup]="formRegister" (ngSubmit)="handleRegister()">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+  
+            <!-- Nom et Prénom (French) -->
+            <div class="mb-4">
+              <label for="nom_et_prenom" class="block text-gray-600 relative">Nom et Prénom
+                <span class="absolute text-red-500 text-xl">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="nom_et_prenom" 
+                formControlName="nom_et_prenom" 
+                class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
+                placeholder="Entrez le nom et prénom" 
+                autocomplete="off"
+              />
+            </div>
+  
+            <!-- Nom et Prénom en Arabe -->
+            <div class="mb-4">
+              <label for="nom_et_prenom_arab" class="block text-gray-600 relative">الاسم واللقب بالعربية
+                <span class="absolute text-red-500 text-xl">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="nom_et_prenom_arab" 
+                formControlName="nom_et_prenom_arab" 
+                class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
+                placeholder="أدخل الاسم واللقب بالعربية" 
+                autocomplete="off"
+              />
+            </div>
+
+            <!-- cin -->
+            <div class="mb-4">
+              <label for="cin" class="block text-gray-600 relative">CIN
+                <span class="absolute text-red-500 text-xl">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="cin" 
+                formControlName="cin" 
+                class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
+                placeholder="Entrez le nom et prénom" 
+                autocomplete="off"
+              />
+            </div>
+  
+            <!-- Email -->
+            <div class="mb-4">
+              <label for="email" class="block text-gray-600 relative">Email
+                <span class="absolute text-red-500 text-xl">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                formControlName="email" 
+                class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
+                placeholder="Entrez votre email" 
+                autocomplete="off"
+              />
+            </div>
+  
+            <!-- Password -->
+            <div class="mb-4">
+              <label for="password" class="block text-gray-600 relative">Mot de passe
+                <span class="absolute text-red-500 text-xl">*</span>
+              </label>
+              <input 
+                type="password" 
+                id="password" 
+                formControlName="password" 
+                class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
+                placeholder="Mot de passe" 
+                autocomplete="off"
+              />
+            </div>
+  
+            <!-- Confirm Password -->
+            <div class="mb-4">
+              <label for="confirmPassword" class="block text-gray-600 relative">Confirmation du mot de passe
+                <span class="absolute text-red-500 text-xl">*</span>
+              </label>
+              <input 
+                type="password" 
+                id="confirmPassword" 
+                formControlName="confirmPassword" 
+                class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
+                placeholder="Confirmez votre mot de passe" 
+                autocomplete="off"
+              />
+            </div>
+  
+            <!-- Phone Number -->
+            <div class="mb-4">
+              <label for="phoneNumber" class="block text-gray-600 relative">Numéro de téléphone
+                <span class="absolute text-red-500 text-xl">*</span>
+              </label>
+              <input 
+                type="tel" 
+                id="phoneNumber" 
+                formControlName="phoneNumber" 
+                class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+                placeholder="Numéro de téléphone" 
+                autocomplete="off"
+              />
+            </div>
+  
+            <!-- City -->
+            <div class="mb-4">
+              <label for="ville" class="block text-gray-600 relative">Ville
+                <span class="absolute text-red-500 text-xl">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="ville" 
+                formControlName="ville" 
+                class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500" 
+                placeholder="Entrez votre ville" 
+                autocomplete="off"
+              />
+            </div>
+  
+            <!-- Date de Naissance -->
+            <div class="mb-4">
+              <label for="date_naissance" class="block text-gray-600 relative">Date de naissance
+                <span class="absolute text-red-500 text-xl">*</span>
+              </label>
+              <input 
+                type="date" 
+                id="date_naissance" 
+                formControlName="date_naissance" 
+                class="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+              />
+            </div>
+  
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="mt-6">
+            <button type="submit" class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 w-full rounded-md">
+              Crée le compte
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  

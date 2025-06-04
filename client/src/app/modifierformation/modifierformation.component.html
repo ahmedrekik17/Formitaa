@@ -1,0 +1,151 @@
+<body class="font-poppins antialiased flex mr-6">
+    <div id="container" class="h-full w-screen flex">
+            <!-- Sidebar (Left) - Collapsible on Small Screens -->
+            <app-sidebar-gestionformaion
+            (closeSidebar)="closeSideBar()"
+            class="shadow-lg z-50 w-60 h-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out"
+            [ngClass]="{'transform translate-x-0': isSidebarOpen, '-translate-x-full sm:translate-x-0': !isSidebarOpen}">
+          </app-sidebar-gestionformaion>
+                  <!-- Main Content (Right) -->
+                  <div class="flex-grow container mx-auto p-4" [ngClass]="{'ml-0 sm:ml-60': !isSidebarOpen}">
+                      <!-- Mobile Menu Button -->
+                       
+                      <button class="sm:hidden p-2 bg-gray-100 rounded-md mb-4" (click)="toggleSidebar()">
+                          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                              stroke="currentColor">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M4 6h16M4 12h16M4 18h16" />
+                          </svg>
+                      </button>
+
+  
+        <!-- Page Title -->
+        <h1 class="text-3xl font-bold text-[black] mb-6">Modifier Formation</h1>
+        <app-modal-message
+          [show]="showModal"
+          [message]="modalMessage"
+          [type]="modalType"
+          (closeEvent)="showModal = false"
+        ></app-modal-message>
+  
+        <form [formGroup]="trainingForm" (ngSubmit)="onSubmit()" class="grid grid-cols-2 gap-6">
+          <!-- Numéro d'Action -->
+          <div class="p-2">
+            <label for="n_action" class="block font-semibold text-gray-700 mb-1">Numéro d'Action</label>
+            <input
+              type="text"
+              id="n_action"
+              formControlName="n_action"
+              placeholder="Numéro d'Action"
+              class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2"
+              style="background-color: #f6f6f6;"
+            />
+          </div>
+  
+          <!-- Thème de la Formation -->
+          <div class="p-2">
+            <label for="theme_formation" class="block font-semibold text-gray-700 mb-1">Thème de la Formation</label>
+            <input
+              type="text"
+              id="theme_formation"
+              formControlName="theme_formation"
+              placeholder="Thème de la Formation"
+              class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2"
+              style="background-color: #f6f6f6;"
+            />
+          </div>
+  
+          <!-- Loi des Finances -->
+          <div class="p-2">
+            <label for="loi_des_finances" class="block font-semibold text-gray-700 mb-1">Loi des Finances</label>
+            <input
+              type="text"
+              id="loi_des_finances"
+              formControlName="loi_des_finances"
+              placeholder="Loi des Finances"
+              class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2"
+              style="background-color: #f6f6f6;"
+            />
+          </div>
+  
+          <!-- Lieu de Déroulement -->
+          <div class="p-2">
+            <label for="lieu_de_deroulement" class="block font-semibold text-gray-700 mb-1">Lieu de Déroulement</label>
+            <input
+              type="text"
+              id="lieu_de_deroulement"
+              formControlName="lieu_de_deroulement"
+              placeholder="Lieu de Déroulement"
+              class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2"
+              style="background-color: #f6f6f6;"
+            />
+          </div>
+  
+          <!-- Formateur Name -->
+          <div class="p-2 relative">
+            <label for="formateurName" class="block font-semibold text-gray-700 mb-1">Formateur Name</label>
+            <input
+                type="text"
+                id="formateurName"
+                formControlName="formateurName"
+                placeholder="Formateur Name"
+                (input)="searchFormateur($event)"
+                class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2"
+                style="background-color: #f6f6f6;"
+            />
+            <ul *ngIf="filteredFormateurs.length > 0"
+              class="absolute left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-md max-h-60 overflow-y-auto z-50">
+          
+              <li *ngFor="let formateur of filteredFormateurs" 
+                  (click)="selectFormateur(formateur)"
+                  class="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer transition-all duration-150 ease-in-out flex items-center gap-2">
+          
+                  <div
+                  [ngClass]="{
+                    'bg-green-500': formateur.formateur_disponible === true,
+                    'bg-red-500': formateur.formateur_disponible === false
+                    }"
+                      class="w-10 h-10 text-white bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold uppercase">
+                      {{ formateur.nom_et_prenom.charAt(0) }}
+                      
+                  </div>
+          
+                  <div>
+                      <p class="font-medium text-green-600">{{ formateur.nom_et_prenom }}</p>
+                      <p class="text-sm font-medium text-green-600"
+                         [ngClass]="formateur.formateur_disponible ? 'text-green-600' : 'text-red-600'">
+                          {{ formateur.formateur_disponible ? 'Disponible' : 'Non Disponible' }}
+                      </p>          
+                  </div>
+              </li>
+          </ul>
+          
+          </div>
+
+          <div class="mt-6">
+            <label class="block font-semibold text-gray-700 mb-1">État</label>
+            <select
+              formControlName="etat"
+              class="w-full p-2 border border-gray-300 rounded-md focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50"
+                style="background-color: #f6f6f6;"
+              required
+            >
+              <option value="En cours">En cours</option>
+              <option value="Annoncé">Annoncé</option>
+              <option value="Terminé">Terminé</option>
+            </select>
+          </div>
+  
+          <!-- Submit Button -->
+          <div class="col-span-full mt-6 p-2">
+            <button
+              type="submit"
+              class="block w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-full"
+            >
+              Modifier Formation
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>

@@ -1,0 +1,201 @@
+<body class="font-poppins antialiased flex mr-6">
+  <div id="container" class="h-full w-screen flex">
+         <!-- Sidebar (Left) - Collapsible on Small Screens -->
+         <app-sidebar-gestionformaion
+         (closeSidebar)="closeSideBar()"
+         class="shadow-lg z-50 w-60 h-screen fixed top-0 left-0 transition-transform duration-300 ease-in-out"
+         [ngClass]="{'transform translate-x-0': isSidebarOpen, '-translate-x-full sm:translate-x-0': !isSidebarOpen}">
+       </app-sidebar-gestionformaion>
+               <!-- Main Content (Right) -->
+               <div class="flex-grow container mx-auto p-4" [ngClass]="{'ml-0 sm:ml-60': !isSidebarOpen}">
+                   <!-- Mobile Menu Button -->
+                   <div class="flex items-center justify-between mb-8">
+
+                   <button class="sm:hidden p-2 bg-gray-100 rounded-md mb-4" (click)="toggleSidebar()">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16" />
+                    </svg>
+                </button>
+                <h1 class="text-3xl font-extrabold text-gray-800 tracking-tight">Gestion des Formations</h1>
+                </div>
+
+    
+
+
+                <!-- Navigation Tabs -->
+                <div class="bg-white shadow-md rounded-2xl overflow-hidden mb-8">
+                    <nav class="flex space-x-4 px-6 py-4" aria-label="Tabs">
+                        <a routerLink="/gestionformation/afficherformation" routerLinkActive="bg-indigo-600 text-white shadow-inner" class="px-5 py-3 rounded-xl text-sm font-semibold text-gray-600 hover:bg-indigo-100 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition-colors duration-200">
+                            Afficher les formations
+                        </a>
+                        <a routerLink="/gestionformation/ajouterformation" routerLinkActive="bg-indigo-600 text-white shadow-inner" class="px-5 py-3 rounded-xl text-sm font-semibold text-gray-600 hover:bg-indigo-100 hover:text-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50 transition-colors duration-200">
+                            Ajouter formation
+                        </a>
+                    </nav>
+                </div>
+      <!-- Page Title -->
+      <h1 class="text-3xl font-bold text-[black] mb-6">Ajouter Formation</h1>
+      <app-modal-message
+        [show]="showModal" 
+        [message]="modalMessage" 
+        [type]="modalType"
+        (closeEvent)="showModal = false">
+      </app-modal-message>
+    
+      <form [formGroup]="trainingForm" (ngSubmit)="onSubmit()" class="grid grid-cols-2 gap-6">
+      
+        <!-- Numéro d'Action -->
+        <div class="p-2">
+          <label for="n_action" class="block font-semibold text-gray-700">Numéro d'Action</label>
+          <input type="text" id="n_action" formControlName="n_action" name="n_action" placeholder="Numéro d'Action" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+        </div>
+      
+        <!-- Thème de la Formation -->
+        <div class="p-2">
+          <label for="theme_formation" class="block font-semibold text-gray-700">Thème de la Formation</label>
+          <input type="text" id="theme_formation" formControlName="theme_formation" name="theme_formation" placeholder="Thème de la Formation" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+        </div>
+      
+        <!-- Loi des Finances -->
+        <div class="p-2">
+          <label for="loi_des_finances" class="block font-semibold text-gray-700">Loi des Finances</label>
+          <input type="text" id="loi_des_finances" formControlName="loi_des_finances" name="loi_des_finances" placeholder="Loi des Finances" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+        </div>
+      
+        <!-- Lieu de Déroulement -->
+        <div class="p-2">
+          <label for="lieu_de_deroulement" class="block font-semibold text-gray-700">Lieu de Déroulement</label>
+          <input type="text" id="lieu_de_deroulement" formControlName="lieu_de_deroulement" name="lieu_de_deroulement" placeholder="Lieu de Déroulement" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+        </div>
+      
+        <!-- Date début -->
+        <div class="p-2">
+          <label for="date_debut" class="block font-semibold text-gray-700">Date début</label>
+          <input type="date" id="date_debut" formControlName="date_debut" name="date_debut" placeholder="Date début" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+        </div>
+
+        <!-- Date fin -->
+        <div class="p-2">
+          <label for="date_fin" class="block font-semibold text-gray-700">Date fin</label>
+          <input type="date" id="date_fin" formControlName="date_fin" name="date_fin" placeholder="Date fin" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+        </div>
+      
+        <!-- Horaire début -->
+        <div class="p-2">
+          <label for="horaire_debut" class="block font-semibold text-gray-700">Horaire début</label>
+          <input type="time" id="horaire_debut" formControlName="horaire_debut" name="horaire_debut" placeholder="Horaire début" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+        </div>
+
+         <!-- Horaire fin -->
+         <div class="p-2">
+          <label for="horaire_fin" class="block font-semibold text-gray-700">Horaire fin</label>
+          <input type="time" id="horaire_fin" formControlName="horaire_fin" name="horaire_fin" placeholder="Horaire fin" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+        </div>
+
+        <!-- Credit Impot & Droits de Tirage (Same Line) -->
+        <div class="p-2 flex items-center space-x-6">
+          <div class="flex items-center">
+              <input type="checkbox" id="credit_impot" formControlName="credit_impot" name="credit_impot" class="mr-2">
+              <label for="credit_impot">Credit Impot</label>
+          </div>
+        
+          <div class="flex items-center">
+              <input type="checkbox" id="droits_de_tirage_individuel" formControlName="droits_de_tirage_individuel" name="droits_de_tirage_individuel" class="mr-2">
+              <label for="droits_de_tirage_individuel">Droits de Tirage Individuel</label>
+          </div>
+        
+          <div class="flex items-center">
+              <input type="checkbox" id="droits_de_tirage_collectif" formControlName="droits_de_tirage_collectif" name="droits_de_tirage_collectif" class="mr-2">
+              <label for="droits_de_tirage_collectif">Droits de Tirage Collectif</label>
+          </div>
+        </div>
+
+        <!-- Mode de Formation -->
+        <div class="p-2">
+          <label for="mode_formation" class="block font-semibold text-gray-700">Mode de Formation</label>
+          <input type="text" id="mode_formation" formControlName="mode_formation" name="mode_formation" placeholder="Mode de Formation" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+        </div>
+      
+        <!-- Numéro de Salle -->
+        <div class="p-2">
+          <label for="num_salle" class="block font-semibold text-gray-700">Numéro de Salle</label>
+          <input type="text" id="num_salle" formControlName="num_salle" name="num_salle" placeholder="Numéro de Salle" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+        </div>
+
+        <!-- Pause (Time) -->
+        <div class="p-2">
+          <label for="pause" class="block font-semibold text-gray-700">Pause</label>
+          <input type="text" id="pause" formControlName="pause" name="pause" placeholder="Pause" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+        </div>
+
+                  <!-- Formateur Name -->
+        <div class="p-2 relative">
+          <label for="formateurName" class="block font-semibold text-gray-700 mb-1">Formateur Name</label>
+          <input
+              type="text"
+              id="formateurName"
+              formControlName="formateurName"
+              placeholder="Formateur Name"
+              (input)="searchFormateur($event)"
+              class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2"
+              style="background-color: #f6f6f6;"
+          />
+          <ul *ngIf="filteredFormateurs.length > 0"
+            class="absolute left-0 right-0 mt-2 bg-white border border-gray-200 rounded-lg shadow-md max-h-60 overflow-y-auto z-50">
+        
+            <li *ngFor="let formateur of filteredFormateurs" 
+                (click)="selectFormateur(formateur)"
+                class="px-4 py-2 text-gray-700 hover:bg-gray-100 cursor-pointer transition-all duration-150 ease-in-out flex items-center gap-2">
+        
+                <div
+                [ngClass]="{
+                  'bg-green-500': formateur.formateur_disponible === true,
+                  'bg-red-500': formateur.formateur_disponible === false
+                  }"
+                    class="w-10 h-10 text-white bg-gray-200 rounded-full flex items-center justify-center text-gray-500 font-bold uppercase">
+                    {{ formateur.nom_et_prenom.charAt(0) }}
+                    
+                </div>
+        
+                <div>
+                    <p class="font-medium text-green-600">{{ formateur.nom_et_prenom }}</p>
+                    <p class="text-sm font-medium text-green-600"
+                       [ngClass]="formateur.formateur_disponible ? 'text-green-600' : 'text-red-600'">
+                        {{ formateur.formateur_disponible ? 'Disponible' : 'Non Disponible' }}
+                    </p>          
+                </div>
+            </li>
+        </ul>
+        
+        </div>
+
+
+        <!-- Image Upload -->
+          <div>
+              <label for="image-upload" class="block w-full h-48 border-2 border-dashed border-gray-300 rounded-md cursor-pointer flex flex-col items-center justify-center bg-[#f6f6f6] hover:bg-gray-50">
+                <div class="text-center">
+                  <div class="mb-2">
+                    <button type="button" (click)="triggerFileInput()" class="bg-indigo-500 hover:bg-indigo-600 text-white rounded-full py-2 px-4">Sélectionnez depuis l'ordinateur</button>
+                  </div>
+                  <p class="text-gray-500">ou faites glisser la photo ici</p>
+                  <p class="text-gray-500 text-sm mt-1">PNG, JPG, SVG</p>
+                </div>
+              </label>
+              <!-- Hidden file input -->
+              <input id="image-upload" (change)="onFileChange($event)" formControlName="image" name="image" type="file" accept="image/*" class="sr-only">
+            </div>
+
+
+        <!-- Registration Button -->
+        <div class="col-span-full mt-6 p-2">
+          <button type="submit" class="block w-full bg-indigo-500 hover:bg-indigo-600 text-white font-bold py-3 px-4 rounded-full">
+            Register Formation
+          </button>
+        </div>
+      </form>                
+
+    </div>
+  </div>
+</body>
