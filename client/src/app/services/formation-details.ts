@@ -29,5 +29,6 @@ export interface FormationDetails {
   horaire_fin: string;    // Added
   formateur?: Formateur;  // Optional, as you have it
   image?: string;        // Optional, as you have it
+  video?: string;
   isRegistered?: boolean; // Optional, as you have it
 }

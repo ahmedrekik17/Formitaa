@@ -16,9 +16,12 @@ import { GestionformateurComponent } from './gestionformateur/gestionformateur.c
 import { ModifierformateurComponent } from './modifierformateur/modifierformateur.component';
 import { AjouterformateurComponent } from './ajouterformateur/ajouterformateur.component';
 import { GestionuserComponent } from './gestionuser/gestionuser.component';
+import { FormationEnLigneComponent } from './formation-en-ligne/formation-en-ligne.component';
+import { GestionvideoComponent } from './gestionvideo/gestionvideo.component';
 
 const routes: Routes = [
   { path:'nosformation',component:NosFormationComponent, canActivate: [AuthGuard]},
+  { path:'formation/:id' ,component:FormationEnLigneComponent ,canActivate: [AuthGuard]},
   { path:'accueil',component:HomeComponent, canActivate: [AuthGuard]},
   { path:'',redirectTo:'login',pathMatch:'full'},
   { path:'login',component:LoginComponent},
@@ -34,6 +37,10 @@ const routes: Routes = [
   { path:'gestionformation',redirectTo:'gestionformation/afficherformation',pathMatch:'full'},
   { path: 'gestionformation/ajouterformation', component: AjouterformationComponent, canActivate: [AuthGuard] },
   { path: 'gestionformation/modifierformation/:id', component: ModifierFormationComponent, canActivate: [AuthGuard] },
+  {
+    path: 'gestionformation/videos/:id',
+    component: GestionvideoComponent
+  },
 
   { path: 'gestionformateur/afficherformateur', component: GestionformateurComponent, canActivate: [AuthGuard] },
   { path:'gestionformateur',redirectTo:'gestionformateur/afficherformateur',pathMatch:'full'},

@@ -17,6 +17,9 @@ require("./routes/user-routes")(app);
 require("./routes/training-routes")(app);
 require("./routes/formateur-routes")(app);
 require("./routes/evaluation-routes")(app);
+require("./routes/video-routes")(app);
+
+
 
 
 app.listen(port, () => {console.log(`listening to port ${port}`)});

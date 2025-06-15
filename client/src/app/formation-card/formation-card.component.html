@@ -2,7 +2,7 @@
   <div class="container mx-auto px-4">
     <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       <div
-        *ngFor="let detail of details"
+        *ngFor="let detail of filteredDetails"
         class="relative overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-2"
       >
         <!-- Status Badge -->
@@ -19,11 +19,13 @@
 
         <!-- Training Image -->
         <img
+        *ngIf="detail?.image || 'assets/images/default.png'" 
           [src]="detail.image"
           [alt]="detail.theme_formation"
           class="h-48 w-full object-cover"
         />
 
+        
         <!-- Card Content -->
         <div class="p-6">
           <!-- Title -->
@@ -36,7 +38,7 @@
             <div>
               <strong>Formateur:</strong> {{ detail.formateur?.nom_et_prenom || 'Non défini' }}
             </div>
-            <div>
+            <div *ngIf="detail.mode_formation==='Présentiel'">
               <strong>Num Salle:</strong> {{ detail.num_salle }}
             </div>
             <div>
@@ -45,7 +47,7 @@
             <div>
               <strong>Période:</strong> {{ detail.date_debut | date:'dd/MM/yyyy' }} - {{ detail.date_fin | date:'dd/MM/yyyy' }}
             </div>
-            <div>
+            <div *ngIf="detail.mode_formation==='Présentiel'">
               <strong>Horaire:</strong> {{ detail.horaire_debut }} - {{ detail.horaire_fin }}
             </div>
           </div>
@@ -53,7 +55,7 @@
           <!-- Action Buttons -->
           <div class="mt-4">
             <button
-              *ngIf="!isRegistered(detail._id)"
+              *ngIf="!isRegistered(detail._id) && detail.mode_formation === 'Présentiel'"
               type="button"
               (click)="onRegister(detail._id)"
               class="w-full rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-all duration-300"
@@ -61,8 +63,17 @@
               S'inscrire
             </button>
 
+            <a
+            *ngIf="detail.mode_formation === 'En ligne'"
+            [routerLink]="['/formation', detail._id]"
+            class="block w-full text-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-semibold text-white hover:bg-indigo-700 transition-all duration-300"
+          >
+            Consulter Formation
+          </a>
+          
+
             <button
-              *ngIf="isRegistered(detail._id)"
+            *ngIf="isRegistered(detail._id) && detail.mode_formation === 'Présentiel'"
               type="button"
               [disabled]="detail.etat !== 'Terminé'"
               (click)="openNoteModal(detail._id)"

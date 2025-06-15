@@ -9,6 +9,7 @@ import { EvaluationService } from '../services/evaluation.service'; // Import th
 })
 export class NosFormationComponent implements OnInit {
   latestComments: any[] = []; 
+  details: any[]=[];
 
   constructor(
     private formationService: FormationService,
@@ -30,4 +31,8 @@ export class NosFormationComponent implements OnInit {
       }
     );
   }
+
+  filterMode: string = 'Tous'; // Default filter
+
+
 }

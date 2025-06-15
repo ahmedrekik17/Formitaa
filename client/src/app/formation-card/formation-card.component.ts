@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormationService } from '../services/formation.service';
 import { EvaluationService } from '../services/evaluation.service';
 import { AuthService } from '../services/auth.service';
@@ -9,17 +9,18 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./formation-card.component.css'],
 })
 export class FormationCardComponent implements OnInit {
-  details: any[] = [];
+  detailsPrésentiel: any[] = [];
   evaluations: any[] = [];
   userId: string | null = null;
   showNoteModal: boolean = false;
   selectedTrainingId: string | null = null;
-  totalSomme: number = 0; // Declare a variable to store the sum
+  totalSomme: number = 0;
   note1: number | null = null;
   note2: number | null = null;
   note3: number | null = null;
   note4: number | null = null;
   comment:string='';
+  detailsEnLigne: any[]=[];
 
   constructor(
     private formationService: FormationService,
@@ -35,17 +36,33 @@ export class FormationCardComponent implements OnInit {
       }
     });
 
-    this.loadTrainings();
+
+        this.loadTrainings();
+  }
+
+  @Input() filterMode: string = 'Tous';
+  get filteredDetails() {
+    if (this.filterMode === 'Tous') return [...this.detailsPrésentiel, ...this.detailsEnLigne];
+  
+    if (this.filterMode === 'Présentiel') return this.detailsPrésentiel;
+    if (this.filterMode === 'En ligne') return this.detailsEnLigne;
+  
+    return [];
   }
 
   private loadTrainings(): void {
     this.formationService.getTrainings().subscribe((data) => {
-      // Sort the trainings by createdAt in descending order (newest first)
-      this.details = data.sort((a, b) => {
+      const sorted = data.sort((a, b) => {
         return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
       });
+  
+      // Filter only "Présentiel" trainings
+      this.detailsPrésentiel = sorted.filter(t => t.mode_formation === 'Présentiel');
+      this.detailsEnLigne = sorted.filter(t => t.mode_formation === 'En ligne');
+
     });
   }
+  
 
   private loadEvaluations(): void {
     if (this.userId) {
@@ -71,7 +88,7 @@ export class FormationCardComponent implements OnInit {
 
   
   openNoteModal(trainingId: string): void {
-    const selectedTraining = this.details.find(detail => detail._id === trainingId);
+    const selectedTraining = this.detailsPrésentiel.find(detail => detail._id === trainingId);
     
     if (selectedTraining && selectedTraining.etat === 'Terminé') {
       this.selectedTrainingId = trainingId;

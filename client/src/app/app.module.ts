@@ -36,6 +36,8 @@ import { FormateurDetailsComponent } from './formateur-details/formateur-details
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { SidebarGestionuserComponent } from './sidebar-gestionuser/sidebar-gestionuser.component';
 import { GestionuserComponent } from './gestionuser/gestionuser.component';
+import { FormationEnLigneComponent } from './formation-en-ligne/formation-en-ligne.component';
+import { GestionvideoComponent } from './gestionvideo/gestionvideo.component';
 
 
 @NgModule({
@@ -68,7 +70,9 @@ import { GestionuserComponent } from './gestionuser/gestionuser.component';
     FormateurDetailsComponent,
     UserDetailsComponent,
     SidebarGestionuserComponent,
-    GestionuserComponent
+    GestionuserComponent,
+    FormationEnLigneComponent,
+    GestionvideoComponent,
   ],
   imports: [
     BrowserModule,

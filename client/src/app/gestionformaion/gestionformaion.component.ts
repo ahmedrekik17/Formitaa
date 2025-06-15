@@ -17,6 +17,7 @@ export class GestionformaionComponent implements OnInit {
     pageNumbers: number[] = [];
     keyword: string = '';
     private searchTerms = new Subject<string>();
+    modeFormationFilter: string='';
 
     modalMessage: string = '';
     modalType: 'success' | 'error' | 'warning' = 'success';
@@ -41,6 +42,8 @@ export class GestionformaionComponent implements OnInit {
         });
     }
 
+
+
     fetchTrainings(): void {
         this.trainingService.getTrainings().subscribe(trainings => {
             // Sort trainings by creation timestamp in descending order (newest first)
@@ -59,6 +62,9 @@ export class GestionformaionComponent implements OnInit {
             this.filteredTrainings = this.trainings.filter(training =>
                 training.n_action.toLowerCase().includes(this.keyword.toLowerCase())
             );
+        }
+        if(this.modeFormationFilter){
+            this.filteredTrainings=this.filteredTrainings.filter(training => training.mode_formation===this.modeFormationFilter)
         }
         this.calculatePagination();
         this.updatePageTrainings();

@@ -61,6 +61,25 @@
                 </div>
                 <input [(ngModel)]="keyword" (ngModelChange)="onSearchChange()" type="text" id="search" class="block p-4 pl-12 w-full text-sm text-gray-900 bg-gray-50 rounded-xl border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Rechercher par N° ACTION">
             </div>
+<!-- Filter by Status -->
+<div class="relative w-fit">
+    <!-- Select Box -->
+    <select
+      [(ngModel)]="modeFormationFilter"
+      (ngModelChange)="filterTrainings()"
+      class="relative z-10 block appearance-none w-[250px] bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-xl focus:ring-indigo-500 focus:border-indigo-500 p-4 pr-8 leading-tight focus:outline-none focus:shadow-outline bg-opacity-90"
+    >
+      <option value="">Tous</option>
+      <option value="En ligne">En ligne</option>
+      <option value="Présentiel">Présentiel</option>
+    </select>
+
+    <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700 z-20">
+      <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+      </svg>
+    </div>
+  </div>
         </div>
 
           <div class="bg-white p-4 shadow-lg rounded-lg">
@@ -90,7 +109,7 @@
                                           </th>
                                           <th class="px-6 py-3 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
                                               <div class="flex cursor-pointer">
-                                                  <span class="mr-2">LIEU</span>
+                                                  <span class="mr-2">MODE FORMATION</span>
                                               </div>
                                           </th>
                                           <th class="px-6 py-3 bg-gray-50 text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -117,7 +136,7 @@
                                               {{ training.formateur.nom_et_prenom }}
                                           </td>
                                           <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" data-columnheader="LIEU">
-                                              {{ training.lieu_de_deroulement }}
+                                              {{ training.mode_formation }}
                                           </td>
                                           <td class="px-6 py-4 whitespace-nowrap text-sm" data-columnheader="ÉTAT">
                                               <div class="flex" [ngClass]="{
@@ -144,9 +163,26 @@
                                           </td>
                                           <td class="px-6 py-4 whitespace-nowrap text-sm" data-columnheader="ACTION">
                                               <div class="flex space-x-4">
+                                                <a
+                                                [routerLink]="['/gestionformation/videos', training._id]"
+                                                class="flex items-center"
+                                                [ngClass]="{
+                                                  'text-purple-600 hover:text-purple-800 cursor-pointer': training.mode_formation === 'En ligne',
+                                                  'text-gray-400 cursor-not-allowed': training.mode_formation !== 'En ligne'
+                                                }"
+
+                                              >
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1 ml-3" fill="none" viewBox="0 0 24 24"
+                                                stroke="currentColor">
+                                                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                    d="M15 10l4.553 2.276A1 1 0 0120 13.118v1.764a1 1 0 01-.447.842L15 18m0 0l-4.553-2.276A1 1 0 0110 14.882v-1.764a1 1 0 01.447-.842L15 10zm0 8v-8" />
+                                                </svg>
+                                                <p>Vidéos</p>                                
+                                              
+                                                </a>
                                                   <a [routerLink]="['/gestionformation/modifierformation', training._id]"
                                                       class="text-blue-500 hover:text-blue-600">
-                                                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1" fill="none" viewBox="0 0 24 24"
+                                                      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 mr-1 ml-3" fill="none" viewBox="0 0 24 24"
                                                           stroke="currentColor">
                                                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                                               d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />

@@ -44,6 +44,22 @@
         (closeEvent)="showModal = false">
       </app-modal-message>
     
+      <!-- Toggle between En ligne and Présentiel Formation -->
+<div class="flex space-x-4 mb-6">
+  <a 
+  (click)="setModeFormation('Présentiel')" 
+  [ngClass]="selectedMode === 'Présentiel' ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700'" 
+  class="px-4 py-2 rounded-full text-sm font-semibold cursor-pointer transition-all">
+  Formation présentiel
+  </a>
+  <a 
+    (click)="setModeFormation('En ligne')" 
+    [ngClass]="selectedMode === 'En ligne' ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-gray-700'" 
+    class="px-4 py-2 rounded-full text-sm font-semibold cursor-pointer transition-all">
+    Formation en ligne
+  </a>
+</div>
+
       <form [formGroup]="trainingForm" (ngSubmit)="onSubmit()" class="grid grid-cols-2 gap-6">
       
         <!-- Numéro d'Action -->
@@ -83,13 +99,13 @@
         </div>
       
         <!-- Horaire début -->
-        <div class="p-2">
+        <div class="p-2" *ngIf="selectedMode === 'Présentiel'">
           <label for="horaire_debut" class="block font-semibold text-gray-700">Horaire début</label>
           <input type="time" id="horaire_debut" formControlName="horaire_debut" name="horaire_debut" placeholder="Horaire début" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
         </div>
 
          <!-- Horaire fin -->
-         <div class="p-2">
+         <div class="p-2" *ngIf="selectedMode === 'Présentiel'">
           <label for="horaire_fin" class="block font-semibold text-gray-700">Horaire fin</label>
           <input type="time" id="horaire_fin" formControlName="horaire_fin" name="horaire_fin" placeholder="Horaire fin" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
         </div>
@@ -115,17 +131,17 @@
         <!-- Mode de Formation -->
         <div class="p-2">
           <label for="mode_formation" class="block font-semibold text-gray-700">Mode de Formation</label>
-          <input type="text" id="mode_formation" formControlName="mode_formation" name="mode_formation" placeholder="Mode de Formation" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
+          <input type="text" readonly id="mode_formation" formControlName="mode_formation" name="mode_formation" placeholder="Mode de Formation" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
         </div>
       
         <!-- Numéro de Salle -->
-        <div class="p-2">
+        <div class="p-2" *ngIf="selectedMode === 'Présentiel'">
           <label for="num_salle" class="block font-semibold text-gray-700">Numéro de Salle</label>
           <input type="text" id="num_salle" formControlName="num_salle" name="num_salle" placeholder="Numéro de Salle" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
         </div>
 
         <!-- Pause (Time) -->
-        <div class="p-2">
+        <div class="p-2" *ngIf="selectedMode === 'Présentiel'">
           <label for="pause" class="block font-semibold text-gray-700">Pause</label>
           <input type="text" id="pause" formControlName="pause" name="pause" placeholder="Pause" class="block w-full rounded-md border-gray-300 shadow-sm focus:border-[#8c0327] focus:ring-[#8c0327] focus:ring-opacity-50 p-2" style="background-color: #f6f6f6;">
         </div>
@@ -186,6 +202,10 @@
               <!-- Hidden file input -->
               <input id="image-upload" (change)="onFileChange($event)" formControlName="image" name="image" type="file" accept="image/*" class="sr-only">
             </div>
+
+
+
+
 
 
         <!-- Registration Button -->

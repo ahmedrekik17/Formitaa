@@ -36,6 +36,7 @@ var trainingSchema = new Schema({
     mode_formation: {
         type: String,
         required: [true, "{PATH} is required"],
+        enum: ['Présentiel', 'En ligne']
     },
     droits_de_tirage_individuel: {
         type: Boolean,
@@ -49,8 +50,16 @@ var trainingSchema = new Schema({
     },
     num_salle: {
         type: String,
-        required: [true, "{PATH} is required"],
-    },
+        validate: {
+          validator: function (v) {
+            if (this.mode_formation === 'Présentiel') {
+              return v && v.trim() !== '';
+            }
+            return true;
+          },
+          message: 'num_salle is required for Présentiel training'
+        }
+      },      
     etat: {
         type: String,
         enum: ['Annoncé', 'En cours','Terminé'],
@@ -59,16 +68,42 @@ var trainingSchema = new Schema({
     },
     pause: {
         type: String,
-        required: [true, "{PATH} is required"],
-    },
-    horaire_debut: { // Changed from horaire
+        validate: {
+          validator: function (v) {
+            if (this.mode_formation === 'Présentiel') {
+              return v && v.trim() !== '';
+            }
+            return true;
+          },
+          message: 'pause is required for Présentiel training'
+        }
+      },
+    
+      horaire_debut: {
         type: String,
-        required: [true, "{PATH} is required"],
-    },
-    horaire_fin: { // Added
+        validate: {
+          validator: function (v) {
+            if (this.mode_formation === 'Présentiel') {
+              return v && v.trim() !== '';
+            }
+            return true;
+          },
+          message: 'horaire_debut is required for Présentiel training'
+        }
+      },
+    
+      horaire_fin: {
         type: String,
-        required: [true, "{PATH} is required"],
-    },
+        validate: {
+          validator: function (v) {
+            if (this.mode_formation === 'Présentiel') {
+              return v && v.trim() !== '';
+            }
+            return true;
+          },
+          message: 'horaire_fin is required for Présentiel training'
+        }
+      },
     formateur: {
         type: Schema.Types.ObjectId,
         ref: 'Formateur',
