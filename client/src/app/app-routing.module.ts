@@ -20,10 +20,10 @@ import { FormationEnLigneComponent } from './formation-en-ligne/formation-en-lig
 import { GestionvideoComponent } from './gestionvideo/gestionvideo.component';
 
 const routes: Routes = [
-  { path:'nosformation',component:NosFormationComponent, canActivate: [AuthGuard]},
-  { path:'formation/:id' ,component:FormationEnLigneComponent ,canActivate: [AuthGuard]},
-  { path:'accueil',component:HomeComponent, canActivate: [AuthGuard]},
-  { path:'',redirectTo:'login',pathMatch:'full'},
+  { path:'nosformation',component:NosFormationComponent},
+  { path:'nosformation/formation/:id' ,component:FormationEnLigneComponent},
+  { path:'accueil',component:HomeComponent},
+  { path:'',redirectTo:'accueil',pathMatch:'full'},
   { path:'login',component:LoginComponent},
   { path:'signup',component:SignupComponent},
   { path: 'profile', component: UserprofileComponent, canActivate: [AuthGuard] },
@@ -31,6 +31,7 @@ const routes: Routes = [
 
 
   { path: 'dashboard', component: DashboardadminComponent, canActivate: [AuthGuard] },
+  
 
 
   { path: 'gestionformation/afficherformation', component: GestionformaionComponent, canActivate: [AuthGuard] },

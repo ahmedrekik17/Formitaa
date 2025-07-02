@@ -12,6 +12,11 @@ var trainingSchema = new Schema({
         type: String,
         required: [true, "{PATH} is required"],
     },
+    type_formation: {
+        type: String,
+        required: [true, "{PATH} is required"],
+        enum: ['Gratuit', 'Payant']
+    },
     loi_des_finances: {
         type: String,
         required: [true, "{PATH} is required"],

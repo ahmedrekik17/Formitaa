@@ -60,4 +60,8 @@ export class FormationService {
       })
     );
   }
+
+  getFilteredTrainings(): Observable<any> {
+  return this.http.get('http://localhost:8000/api/filtered-trainings', { withCredentials: true });
+}
 }

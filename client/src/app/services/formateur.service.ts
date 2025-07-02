@@ -27,4 +27,7 @@ export class FormateurService {
     updateFormateur(id: string, formateur: any): Observable<any> {
       return this.http.put(`${this.apiUrl}/formateur/${id}`, formateur);
     }
+      getTrainersBySpecialite(training: string): Observable<any[]> {
+    return this.http.get<any[]>(`${this.apiUrl}/trainers-by-specialite/${training}`);
+  }
 }

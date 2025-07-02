@@ -38,9 +38,10 @@ export class LoginComponent {
                       console.log(decodedToken);
                       
                         if (decodedToken && decodedToken.role === 'admin') {
-
+                            localStorage.setItem('isLoggedIn', 'true'); // ✅ set login flag
                                 this.router.navigate(['/dashboard']);
                             } else if (decodedToken) {
+                                localStorage.setItem('isLoggedIn', 'true'); // ✅ set login flag
                                 this.router.navigate(['/accueil']);
                             } else {
                                  this.showAlertMessage('❌ User role not found.', 'error');

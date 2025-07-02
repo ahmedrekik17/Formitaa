@@ -3,7 +3,8 @@ const {
     getAllTrainings,
     getTrainingById,
     updateTraining,
-    deleteTraining
+    deleteTraining,
+    getFilteredTrainings
 } = require('../controllers/training-controller');
 
 
@@ -14,4 +15,6 @@ module.exports = (app) => {
     app.get('/api/training/:id', getTrainingById);
     app.put('/api/training/:id', updateTraining);
     app.delete('/api/training/:id', deleteTraining);
+    app.get('/api/filtered-trainings', getFilteredTrainings);
+
 };

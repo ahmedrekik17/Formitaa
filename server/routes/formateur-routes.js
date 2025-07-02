@@ -1,4 +1,4 @@
-const { createFormateur, getAllFormateurs, getFormateurById, updateFormateur, deleteFormateur } = require('../controllers/formateur-controller');
+const { createFormateur, getAllFormateurs, getFormateurById, updateFormateur, deleteFormateur, getTrainersBySpecialite} = require('../controllers/formateur-controller');
 
 module.exports = (app) => {
     app.post('/api/formateur', createFormateur);
@@ -6,4 +6,5 @@ module.exports = (app) => {
     app.get('/api/formateur/:id', getFormateurById);
     app.put('/api/formateur/:id', updateFormateur);
     app.delete('/api/formateur/:id', deleteFormateur);
+    app.get('/api/trainers-by-specialite/:specialite', getTrainersBySpecialite);
 };
