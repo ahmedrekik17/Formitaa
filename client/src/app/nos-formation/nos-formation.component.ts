@@ -30,7 +30,9 @@ export class NosFormationComponent implements OnInit {
     { name: 'Angular', icon: 'assets/images/angular.png' },
     { name: 'JavaScript', icon: 'assets/images/javascript.png' },
     { name: 'React', icon: 'assets/images/react.png' },
-    { name: 'Spring Boot', icon: 'assets/images/sp.png' }
+    { name: 'Spring Boot', icon: 'assets/images/sp.png' },
+        { name: 'Java', icon: 'assets/images/java.png' },
+
     // Add more icons as needed
   ];
 
@@ -42,36 +44,15 @@ export class NosFormationComponent implements OnInit {
   constructor(
     private evaluationService: EvaluationService,
     private trainerService: FormateurService,
-    private authService: AuthService,
-    private http: HttpClient
+
   ) {}
 
   // Variable to hold the user ID
-  userId: string | null = null;
+
 
 
   ngOnInit(): void {
-    const isLoggedIn = localStorage.getItem('isLoggedIn') === 'true';
 
-  if (isLoggedIn) {
-    this.authService.getLoggedInUser().subscribe({
-      next: (user: Userinfo | null) => {
-        this.user = user;
-        // Store user ID for later use
-        this.userId = user?._id || null;
-        console.log('userId:', this.userId);
-            this.loadWeeklyTrainings();
-
-        
-      },
-      error: (err: any) => {
-        console.warn('⛔ Failed to get user:', err);
-        this.user = null;
-      }
-    });
-  } else {
-    this.user = null; // guest mode
-  }
     this.loadLatestComments();
 
   }
@@ -83,19 +64,7 @@ export class NosFormationComponent implements OnInit {
     });
   }
 
-  loadWeeklyTrainings(): void {  
-    if (!this.userId) return;
 
-this.http.get<WeeklyFormation[]>(`http://localhost:8000/api/evaluations/user/${this.userId}/weekly-trainings`)
-  .subscribe({
-    next: (formations) => {
-      console.log('Raw formations:', formations); // 👈 this should show your formation list
-      this.formationsByDay = this.groupByDay(formations);
-      console.log('Grouped formationsByDay:', this.formationsByDay); // 👈 check this
-    },
-    error: (err) => console.error('Error fetching weekly trainings:', err)
-  });
-  }
   
 
   groupByDay(formations: WeeklyFormation[]): { [key: string]: WeeklyFormation[] } {

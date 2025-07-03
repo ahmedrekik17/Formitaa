@@ -401,39 +401,6 @@
     </div>
   </section>
 
-<div class="overflow-x-auto mt-4">
-  <div class="grid grid-cols-8 text-center font-bold bg-gray-100 sticky top-0 z-10">
-    <div class="p-2 border">Heure</div>
-    <div *ngFor="let day of days" class="p-2 border">{{ day }}</div>
-  </div>
-
-  <div *ngFor="let hour of hours" class="grid grid-cols-8 border-t text-sm">
-    <div class="p-2 border font-semibold">{{ hour }}</div>
-
-    <div *ngFor="let day of days" class="relative h-24 border p-1">
-<ng-container *ngFor="let formation of formationsByDay[day] || []">
-  <div
-    *ngIf="formation.start.slice(0, 2) === hour.slice(0, 2)"
-    class="absolute top-1 left-1 right-1 bg-blue-100 rounded p-2 shadow text-xs"
-  >
-    <div class="font-medium flex items-center gap-1">
-      <img
-        *ngIf="getIcon(formation.title)"
-        [src]="getIcon(formation.title)"
-        class="w-4 h-4"
-      />
-      {{ formation.title }}
-    </div>
-    <div>{{ formation.start }} → {{ formation.end }}</div>
-    <div class="italic text-gray-600">{{ formation.location }}</div>
-  </div>
-</ng-container>
-
-    </div>
-  </div>
-</div>
-
-
 
   <app-footer></app-footer>
 </div>
