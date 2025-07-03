@@ -18,6 +18,7 @@ import { AjouterformateurComponent } from './ajouterformateur/ajouterformateur.c
 import { GestionuserComponent } from './gestionuser/gestionuser.component';
 import { FormationEnLigneComponent } from './formation-en-ligne/formation-en-ligne.component';
 import { GestionvideoComponent } from './gestionvideo/gestionvideo.component';
+import { CalendrierFormationsComponent } from './calendrier-formations/calendrier-formations.component';
 
 const routes: Routes = [
   { path:'nosformation',component:NosFormationComponent},
@@ -28,6 +29,8 @@ const routes: Routes = [
   { path:'signup',component:SignupComponent},
   { path: 'profile', component: UserprofileComponent, canActivate: [AuthGuard] },
   { path: 'historique', component: UserHistoriqueComponent, canActivate: [AuthGuard] },
+    { path: 'calendrier', component: CalendrierFormationsComponent, canActivate: [AuthGuard] },
+
 
 
   { path: 'dashboard', component: DashboardadminComponent, canActivate: [AuthGuard] },

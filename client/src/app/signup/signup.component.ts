@@ -3,37 +3,78 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
-
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.css'],
+  styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
   formRegister!: FormGroup;
 
-  // 🔔 Alert State
+  // Alert State
   alertMessage: string = '';
   alertType: 'success' | 'error' | 'warning' = 'success';
   showAlert: boolean = false;
 
-  constructor(private fb: FormBuilder, private authService: AuthService, private route: Router) {}
+  // Progress State
+  progressPercentage: number = 0;
+
+  // NEW: Property to track the current step for the segmented progress bar
+  currentStep: number = 1;
+
+  constructor(
+    private fb: FormBuilder,
+    private authService: AuthService,
+    private route: Router
+  ) {}
 
   ngOnInit() {
     this.formRegister = this.fb.group({
-      nom_et_prenom: this.fb.control('', Validators.required),
-      nom_et_prenom_arab: this.fb.control('', Validators.required),
-      cin:this.fb.control('',Validators.required),
-      email: this.fb.control('', Validators.required),
-      password: this.fb.control('', Validators.required),
-      confirmPassword: this.fb.control('', Validators.required),
-      phoneNumber: this.fb.control('', Validators.required),
-      ville: this.fb.control('', Validators.required),
-      date_naissance: this.fb.control('', Validators.required),
+      // Group 1: Account
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      // Group 2: Personal
+      nom_et_prenom: ['', Validators.required],
+      nom_et_prenom_arab: ['', Validators.required],
+      cin: ['', Validators.required],
+      date_naissance: ['', Validators.required],
+      // Group 3: Contact
+      phoneNumber: ['', Validators.required],
+      ville: ['', Validators.required],
     });
+
+    this.formRegister.valueChanges.subscribe(() => {
+      this.calculateProgress();
+    });
+
+    this.calculateProgress(); // Initial calculation
   }
 
-  // 🛑 Show Alert
+  calculateProgress(): void {
+    const controls = this.formRegister.controls;
+    const totalControls = Object.keys(controls).length;
+    let validControls = 0;
+
+    for (const name in controls) {
+      if (controls[name]?.valid) {
+        validControls++;
+      }
+    }
+
+    this.progressPercentage = totalControls > 0 ? Math.round((validControls / totalControls) * 100) : 0;
+
+    // NEW: Logic to set the current step based on progress
+    if (this.progressPercentage < 34) {
+      this.currentStep = 1;
+    } else if (this.progressPercentage < 67) {
+      this.currentStep = 2;
+    } else {
+      this.currentStep = 3;
+    }
+  }
+
+  // ... (Your showAlertMessage and handleRegister methods remain unchanged)
   showAlertMessage(message: string, type: 'success' | 'error' | 'warning') {
     this.alertMessage = message;
     this.alertType = type;
@@ -101,5 +142,4 @@ export class SignupComponent implements OnInit {
       }
     });
   }
-  
 }

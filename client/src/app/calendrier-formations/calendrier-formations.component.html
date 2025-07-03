@@ -1,0 +1,214 @@
+<app-navbar></app-navbar>
+
+<div class="bg-gradient-to-br from-slate-50 to-blue-50 min-h-screen p-6">
+  <div class="max-w-full mx-auto">
+    <!-- Header Section -->
+    <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 mb-6">
+      <div class="flex items-center justify-between">
+        <div class="flex items-center space-x-6">
+          <div class="bg-gradient-to-r from-blue-600 via-purple-600 to-indigo-600 rounded-xl p-4 shadow-lg">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+          </div>
+          <div>
+            <h1 class="text-3xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+              Calendrier des Formations
+            </h1>
+            <p class="text-gray-500 text-base mt-1">Planification hebdomadaire des sessions de formation</p>
+            <div class="flex items-center space-x-4 mt-2">
+              <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                <div class="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                En direct
+              </span>
+              <span class="text-sm text-gray-400">Mis à jour il y a quelques instants</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Controls -->
+        <div class="flex items-center space-x-4">
+          <button (click)="previousWeek()" 
+                  class="group flex items-center space-x-3 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 rounded-xl border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-105">
+            <svg class="w-5 h-5 group-hover:-translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+            <span class="font-semibold">Précédente</span>
+          </button>
+
+          <div class="px-6 py-3 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl shadow-lg font-bold text-lg">
+            Semaine {{ getWeekNumber() }}
+          </div>
+
+          <button (click)="nextWeek()" 
+                  class="group flex items-center space-x-3 px-6 py-3 bg-white hover:bg-gray-50 text-gray-700 rounded-xl border border-gray-200 shadow-sm transition-all duration-300 hover:shadow-md hover:scale-105">
+            <span class="font-semibold">Suivante</span>
+            <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Calendar Grid -->
+    <div class="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+      <div class="overflow-x-auto">
+        <!-- Header Row with Hours -->
+        <div style="display: grid; grid-template-columns: 150px repeat(12, minmax(120px, 1fr));" 
+             class="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900">
+          <!-- Corner cell -->
+          <div class="p-4 text-center font-bold text-white border-r border-gray-700">
+            <div class="flex flex-col items-center space-y-2">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+              </svg>
+              <span class="text-sm font-semibold">Jours / Heures</span>
+            </div>
+          </div>
+          <!-- Hour headers -->
+          <div *ngFor="let hour of hours" 
+               class="p-3 text-center font-bold text-white border-r border-gray-700 last:border-r-0">
+            <div class="flex flex-col items-center space-y-1">
+              <div class="text-lg font-bold">{{ hour }}</div>
+              <div class="text-xs text-gray-300 opacity-75">{{ getNextHour(hour) }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Calendar Body -->
+        <div class="divide-y divide-gray-200">
+          <!-- Each day row -->
+          <div *ngFor="let day of days; let dayIndex = index" 
+               style="display: grid; grid-template-columns: 150px repeat(12, minmax(120px, 1fr));"
+               class="hover:bg-blue-25 transition-all duration-200">
+            
+            <!-- Day name cell -->
+            <div class="p-4 border-r border-gray-200 bg-gradient-to-r from-slate-50 to-gray-50 flex flex-col justify-center">
+              <div class="text-center">
+                <div class="font-bold text-xl text-gray-800 capitalize mb-2">{{ day }}</div>
+                <div class="text-sm text-gray-600 bg-white px-3 py-1 rounded-full shadow-sm border">
+                  {{ getDayDate(dayIndex) }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Hour cells for this day -->
+            <div *ngFor="let hour of hours; let hourIndex = index" 
+                 class="relative border-r border-gray-200 last:border-r-0 bg-white hover:bg-blue-25 transition-colors duration-200 min-h-[120px]"
+                 [class.bg-blue-50]="isCurrentHour(hour) && isCurrentDay(day)"
+                 [class.border-blue-200]="isCurrentHour(hour) && isCurrentDay(day)"
+                 [class.shadow-inner]="isCurrentHour(hour) && isCurrentDay(day)">
+              
+              <!-- Current time indicator -->
+              <div *ngIf="isCurrentHour(hour) && isCurrentDay(day)" 
+                   class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 to-purple-500 z-10"></div>
+              
+              <!-- Formation Cards for this specific day and hour -->
+              <div class="p-2 space-y-2">
+                <div *ngFor="let formation of getFormationsAtHour(day, hour); let formIndex = index" 
+                     [ngClass]="getFormationCardClass(formation.title)"
+                     class="formation-card p-3 rounded-lg border-l-4 shadow-sm hover:shadow-md transition-shadow duration-200 cursor-pointer">
+                  
+                  <!-- Formation header -->
+                  <div class="flex items-center space-x-2 mb-2">
+                    <img *ngIf="getIcon(formation.title)" 
+                         [src]="getIcon(formation.title)" 
+                         class="w-5 h-5 rounded" 
+                         [alt]="formation.title">
+                    <h4 class="font-bold text-sm truncate flex-1">{{ formation.title }}</h4>
+                  </div>
+                  
+                  <!-- Formation details -->
+                  <div class="space-y-1 text-xs">
+                    <div class="flex items-center space-x-1">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                      </svg>
+                      <span class="font-medium">{{ formation.start }} - {{ formation.end }}</span>
+                      <span class="text-gray-500">({{ getFormationDuration(formation) }})</span>
+                    </div>
+                    <div class="flex items-center space-x-1">
+                      <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                      </svg>
+                      <span class="truncate">{{ formation.location }}</span>
+                    </div>
+                  </div>
+                  
+                  <!-- Progress bar for ongoing formations -->
+                  <div *ngIf="getFormationProgress(formation) > 0" 
+                       class="mt-2 w-full bg-gray-200 rounded-full h-2">
+                    <div class="bg-gradient-to-r from-blue-500 to-purple-500 h-2 rounded-full transition-all duration-500" 
+                         [style.width.%]="getFormationProgress(formation)"></div>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Empty State -->
+              <div *ngIf="!hasAnyFormationAtHour(day, hour)" 
+                   class="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity duration-300">
+                <div class="text-center text-gray-400">
+                  <svg class="w-6 h-6 mx-auto mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" 
+                          d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                  </svg>
+                  <span class="text-xs font-medium">Disponible</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Statistics and Legend -->
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+      <!-- Statistics Card -->
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center space-x-2">
+          <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+          <span>Statistiques de la semaine</span>
+        </h3>
+        <div class="grid grid-cols-3 gap-4">
+          <div class="text-center p-4 bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl">
+            <div class="text-2xl font-bold text-blue-600">{{ getTotalFormations() }}</div>
+            <div class="text-sm text-blue-500 font-medium">Formations</div>
+          </div>
+          <div class="text-center p-4 bg-gradient-to-br from-green-50 to-green-100 rounded-xl">
+            <div class="text-2xl font-bold text-green-600">{{ getTotalHours() }}h</div>
+            <div class="text-sm text-green-500 font-medium">Heures</div>
+          </div>
+          <div class="text-center p-4 bg-gradient-to-br from-purple-50 to-purple-100 rounded-xl">
+            <div class="text-2xl font-bold text-purple-600">{{ getActiveDays() }}</div>
+            <div class="text-sm text-purple-500 font-medium">Jours actifs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="bg-white rounded-2xl shadow-lg border border-gray-100 p-6">
+        <h3 class="text-xl font-bold text-gray-800 mb-4 flex items-center space-x-2">
+          <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a4 4 0 004-4V5z"></path>
+          </svg>
+          <span>Types de formations</span>
+        </h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div *ngFor="let training of trainingIcons" class="flex items-center space-x-3 p-3 rounded-xl hover:bg-gray-50 transition-colors duration-200">
+            <div [ngClass]="getLegendColorClass(training.name)" class="w-6 h-6 rounded-lg border-l-4 shadow-sm"></div>
+            <img [src]="training.icon" class="w-8 h-8 rounded-lg shadow-sm" [alt]="training.name">
+            <span class="font-semibold text-gray-700">{{ training.name }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

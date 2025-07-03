@@ -1,111 +1,267 @@
+<div class="bg-gradient-to-br from-gray-50 to-indigo-50">
 <app-navbar></app-navbar>
-<!-- Hero Section -->
-        <section class="relative bg-gradient-to-br from-blue-900 to-indigo-800 text-white overflow-hidden">
-            <div class="absolute inset-0 bg-black opacity-50"></div>
-            <div class="absolute inset-0 bg-cover bg-center bg-gray-500"></div>
-            
-            <div class="container mx-auto px-4 py-24 md:py-32 relative z-10">
-                <div class="flex flex-col md:flex-row items-center justify-between">
-                    <!-- Left Side: Company Info -->
-                    <div class="w-full md:w-1/2 mb-12 md:mb-0">
-                        <h1 class="text-5xl md:text-6xl font-bold mb-6 leading-tight">
-                            Innover.<br>Transformer.<br>Réussir.
-                            
-                        </h1>
-                        <p class="text-xl mb-8 text-gray-300">Accédez à des opportunités de formation uniques.</p>
-                        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                            <a routerLink="/nosformation" class="bg-white text-blue-900 font-semibold px-8 py-3 rounded-full hover:bg-blue-100 transition duration-300 text-center">Commencer</a>
-                        </div>
-                    </div>
-                    
-                    <!-- Right Side: Features -->
-                    <div class="w-full md:w-1/2 md:pl-12">
-                        <img src="../../assets/images/header-hero.png" alt="">
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Decorative Element -->
-            <div class="absolute bottom-0 left-0 right-0">
-                <svg viewBox="0 0 1440 120" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M0 120L60 105C120 90 240 60 360 45C480 30 600 30 720 37.5C840 45 960 60 1080 67.5C1200 75 1320 75 1380 75L1440 75V120H1380C1320 120 1200 120 1080 120C960 120 840 120 720 120C600 120 480 120 360 120C240 120 120 120 60 120H0Z" fill="white"/>
-                </svg>
-                
-                
-            </div>
-        </section>
-        <section id="about" class="relative mt-40 pt-20 px-6 mx-auto">
-            <div class="container px-6 mx-auto">
-                <div class="row flex flex-wrap lg:flex-nowrap">
+
+<!-- Compact Hero Section -->
+<section class="relative py-8 bg-gradient-to-r from-slate-900 via-purple-900 to-slate-900 overflow-hidden">
+  <!-- Animated Grid Background -->
+  <div class="absolute inset-0 opacity-40"
+       [style.background-image]="'url(\'data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%234f46e5%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%227%22%20cy%3D%227%22%20r%3D%221%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E\')'">
+  </div>  
+
+  <!-- Content -->
+  <div class="relative z-10 container mx-auto px-6 py-10 lg:py-18">
+    <div class="text-center max-w-5xl mx-auto">
+      <!-- Badge -->
+      <div class="inline-flex items-center px-4 py-2 mb-6 bg-white/10 backdrop-blur-md rounded-full border border-white/20">
+        <span class="w-2 h-2 bg-emerald-400 rounded-full mr-2 animate-pulse"></span>
+        <span class="text-white text-sm font-medium">+10,000 étudiants</span>
+      </div>
+      
+      <!-- Main Headline -->
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
+        <span class="block text-white">Développez vos</span>
+        <span class="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400">Compétences</span>
+        <span class="block text-white">de Demain</span>
+      </h1>
+      
+      <!-- Subtitle -->
+      <p class="text-lg md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
+        Maîtrisez les technologies les plus demandées avec nos formations pratiques.
+      </p>
+      
+      <!-- CTA Buttons -->
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-12">
+        <a routerLink="/nosformation" 
+           class="group relative px-8 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-bold text-base rounded-xl hover:shadow-xl hover:shadow-purple-500/25 transform hover:scale-105 transition-all duration-300">
+          <span class="relative z-10 flex items-center justify-center">
+            Explorez nos formations
+            <svg class="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+            </svg>
+          </span>
+        </a>
         
-                    <!-- Left side with boxes -->
-                    <div class="w-full lg:w-1/2 m-auto grid gap-8 grid-cols-1">
-                        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-                            <div class="about-content">
-                                <div class="section-title">
-                                    <div class="bg-blue-500 h-1 w-10 mb-2"></div>
-                                    <h3 class="text-lg font-semibold text-gray-800">INNOVER</h3>
-                                </div>
-                                <p class="text-gray-600"> Adopter de nouvelles idées, remettre en 
-                                question les normes, et créer des solutions informatiques révolutionnaires. 
-                                L'innovation alimente l'avenir de la technologie.</p>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-                            <div class="about-content">
-                                <div class="section-title">
-                                    <div class="bg-blue-500 h-1 w-10 mb-2"></div>
-                                    <h3 class="text-lg font-semibold text-gray-800">TRANSFORMER</h3>
-                                </div>
-                                <p class="text-gray-600">Exploiter la technologie pour impulser des changements fondamentaux,
-                                    remodeler les organisations et autonomiser les individus.
-                                    Les compétences informatiques transformatrices sont essentielles.</p>
-                            </div>
-                        </div>
-                        <div class="bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition duration-300">
-                            <div class="about-content">
-                                <div class="section-title">
-                                    <div class="bg-blue-500 h-1 w-10 mb-2"></div>
-                                    <h3 class="text-lg font-semibold text-gray-800">REUSSIR</h3>
-                                </div>
-                                <p class="text-gray-600">Maîtriser les compétences essentielles, 
-                                    s'adapter au changement et contribuer à des avancées informatiques significatives. 
-                                    La réussite en informatique est une question d'impact.</p>
-                            </div>
-                        </div>
-                    </div>
-        
-                    <!-- Right side with image -->
-                    <div class="w-full lg:w-1/2">
-                        <div class="mx-4 mt-12 text-center about-image wow fadeInRightBig" data-wow-duration="1s"
-                            data-wow-delay="0.5s">
-                            <img class="rounded-md" src="https://th.bing.com/th/id/R.82696d47905beeb58b4de83e60946811?rik=lbAjInF9kOu32g&pid=ImgRaw&r=0" alt="about">
-                        </div> <!-- about image -->
-                    </div>
-                </div> <!-- row -->
-            </div> <!-- container -->
-        </section>
-        <section class="bg-gray-100 py-16 mt-60 mb-40">
-            <div class="container px-6 mx-auto text-center">
-              <h2 class="text-3xl font-bold text-gray-800">Ce que disent nos étudiants</h2>
-              <div class="flex justify-center mt-8 space-x-8">
-                <!-- Loop through the latest comments -->
-                <div *ngFor="let comment of latestComments" class="w-1/3 p-4 bg-white rounded-lg shadow-lg">
-                  <p class="mt-4 text-indigo-500 font-semibold">{{ comment.user.nom_et_prenom }}</p>
-                  <p class="text-gray-600">"{{ comment.comment }}"</p>
-                </div>
-          
-                <!-- Display a message if no comments are available -->
-                <div *ngIf="latestComments.length === 0" class="w-full text-center">
-                  <p class="text-gray-600">Aucun commentaire disponible pour le moment.</p>
+        <button class="group px-8 py-3 border-2 border-white/30 text-white font-semibold text-base rounded-xl hover:bg-white hover:text-gray-900 transition-all duration-300">
+          <span class="flex items-center justify-center">
+            <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+            </svg>
+            Voir démo
+          </span>
+        </button>
+      </div>
+      
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-8 border-t border-white/20">
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-bold text-white mb-1">50+</div>
+          <div class="text-gray-400 text-xs">Formations</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-bold text-white mb-1">95%</div>
+          <div class="text-gray-400 text-xs">Satisfaction</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-bold text-white mb-1">24/7</div>
+          <div class="text-gray-400 text-xs">Support</div>
+        </div>
+        <div class="text-center">
+          <div class="text-2xl md:text-3xl font-bold text-white mb-1">3 mois</div>
+          <div class="text-gray-400 text-xs">Durée</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Decorative Elements -->
+  <div class="absolute top-12 right-12 w-40 h-40 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-full blur-2xl"></div>
+  <div class="absolute bottom-12 left-12 w-48 h-48 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-full blur-2xl"></div>
+</section>
+
+<!-- Features Section -->
+<section class="py-24 relative">
+  <div class="container mx-auto px-6">
+    <!-- Section Header -->
+    <div class="text-center mb-20">
+      <div class="inline-block px-4 py-2 bg-indigo-100 text-indigo-600 rounded-full text-sm font-semibold mb-4">
+        Pourquoi nous choisir
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        Une approche révolutionnaire de l'apprentissage
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Nous combinons pédagogie moderne, technologies de pointe et accompagnement personnalisé 
+        pour garantir votre réussite professionnelle.
+      </p>
+    </div>
+
+<!-- Compact Features Grid -->
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+  
+  <!-- Feature 1: Formations Certifiantes -->
+  <div class="group p-6 bg-gradient-to-br from-blue-50 to-indigo-100 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+    <div class="w-12 h-12 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+      </svg>
+    </div>
+    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-indigo-600 transition-colors">
+      Formations Certifiantes
+    </h3>
+    <p class="text-gray-600 text-sm leading-relaxed">
+      Certifications reconnues pour valoriser vos compétences professionnelles.
+    </p>
+  </div>
+
+  <!-- Feature 2: Suivi Personnalisé -->
+  <div class="group p-6 bg-gradient-to-br from-purple-50 to-pink-100 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+    <div class="w-12 h-12 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+      </svg>
+    </div>
+    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-purple-600 transition-colors">
+      Suivi Personnalisé
+    </h3>
+    <p class="text-gray-600 text-sm leading-relaxed">
+      Tableaux de bord pour suivre votre progression et recommandations.
+    </p>
+  </div>
+
+  <!-- Feature 3: Formateurs Experts -->
+  <div class="group p-6 bg-gradient-to-br from-emerald-50 to-teal-100 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+    <div class="w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+      </svg>
+    </div>
+    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-emerald-600 transition-colors">
+      Formateurs Experts
+    </h3>
+    <p class="text-gray-600 text-sm leading-relaxed">
+      Professionnels en activité avec expertise reconnue.
+    </p>
+  </div>
+
+  <!-- Feature 4: Accès Illimité -->
+  <div class="group p-6 bg-gradient-to-br from-orange-50 to-red-100 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+    <div class="w-12 h-12 bg-gradient-to-br from-orange-500 to-red-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14M5 12a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v4a2 2 0 01-2 2M5 12a2 2 0 00-2 2v4a2 2 0 002 2h14a2 2 0 002-2v-4a2 2 0 00-2-2m-2-4h.01M17 16h.01"></path>
+      </svg>
+    </div>
+    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-orange-600 transition-colors">
+      Accès Illimité
+    </h3>
+    <p class="text-gray-600 text-sm leading-relaxed">
+      Ressources accessibles 24h/24 sur tous appareils.
+    </p>
+  </div>
+
+  <!-- Feature 5: Cas Pratiques -->
+  <div class="group p-6 bg-gradient-to-br from-cyan-50 to-blue-100 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+    <div class="w-12 h-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+      </svg>
+    </div>
+    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-cyan-600 transition-colors">
+      Cas Pratiques
+    </h3>
+    <p class="text-gray-600 text-sm leading-relaxed">
+      Exercices concrets inspirés de situations réelles.
+    </p>
+  </div>
+
+  <!-- Feature 6: Support Réactif -->
+  <div class="group p-6 bg-gradient-to-br from-violet-50 to-purple-100 rounded-2xl hover:shadow-lg transition-all duration-300 hover:scale-[1.02]">
+    <div class="w-12 h-12 bg-gradient-to-br from-violet-500 to-purple-600 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+      <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+      </svg>
+    </div>
+    <h3 class="text-xl font-bold text-gray-900 mb-3 group-hover:text-violet-600 transition-colors">
+      Support Réactif
+    </h3>
+    <p class="text-gray-600 text-sm leading-relaxed">
+      Réponses à vos questions sous 24h maximum.
+    </p>
+  </div>
+</div>
+  </div>
+</section>
+
+<!-- Success Stories Section -->
+<section class="py-24 bg-gradient-to-br from-slate-50 to-gray-100">
+  <div class="container mx-auto px-6">
+    <!-- Section Header -->
+    <div class="text-center mb-20">
+      <div class="inline-block px-4 py-2 bg-emerald-100 text-emerald-600 rounded-full text-sm font-semibold mb-4">
+        Success Stories
+      </div>
+      <h2 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+        Ils ont transformé leur carrière
+      </h2>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+        Découvrez les parcours inspirants de nos étudiants qui ont réussi leur reconversion 
+        ou accéléré leur évolution professionnelle.
+      </p>
+    </div>
+
+  <!-- Testimonials Section with Modern Design -->
+
+
+      <div *ngIf="latestComments.length > 0" class="grid md:grid-cols-3 gap-8">
+        <div 
+          *ngFor="let comment of latestComments" 
+          class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
+        >
+          <div class="flex items-center mb-6">
+            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold">
+              {{ getInitials(comment.user.nom_et_prenom) }}
+            </div>
+            <div class="ml-4">
+              <h4 class="font-semibold text-gray-800">{{ comment.user.nom_et_prenom }}</h4>
+              <div class="flex items-center mt-1">
+                <div class="flex space-x-1">
+                  <svg *ngFor="let star of [1,2,3,4,5]" class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  </svg>
                 </div>
               </div>
             </div>
-          </section>
-        
+          </div>
+          <blockquote class="text-gray-600 italic leading-relaxed">
+            "{{ comment.comment }}"
+          </blockquote>
+        </div>
+      </div>
+
+      <div *ngIf="latestComments.length === 0" class="text-center py-16">
+        <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+        </svg>
+        <p class="text-gray-600 text-lg">Aucun commentaire disponible pour le moment</p>
+      </div>
+
+    <!-- Empty State -->
+    <div *ngIf="latestComments.length === 0" 
+         class="text-center py-20">
+      <div class="w-32 h-32 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full flex items-center justify-center mx-auto mb-8">
+        <svg class="w-16 h-16 text-indigo-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+        </svg>
+      </div>
+      <h3 class="text-2xl font-bold text-gray-900 mb-4">Bientôt des témoignages inspirants</h3>
+      <p class="text-gray-600 max-w-md mx-auto">
+        Nos premiers étudiants terminent actuellement leur formation. 
+        Leurs success stories arriveront très prochainement !
+      </p>
+    </div>
+  </div>
+</section>
+
+
 
 <app-footer></app-footer>
-        
-
-
-
+</div>

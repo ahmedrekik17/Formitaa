@@ -49,9 +49,22 @@ logout() {
       localStorage.removeItem('isLoggedIn');  // ✅ remove the flag
       this.user = null;
       this.router.navigate(['/accueil']);
+          this.closeDropdown();
+
     }
   });
 }
+
+isDropdownOpen = false;
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+
+  closeDropdown() {
+    this.isDropdownOpen = false;
+  }
+
 
 
 }

@@ -38,6 +38,7 @@ import { SidebarGestionuserComponent } from './sidebar-gestionuser/sidebar-gesti
 import { GestionuserComponent } from './gestionuser/gestionuser.component';
 import { FormationEnLigneComponent } from './formation-en-ligne/formation-en-ligne.component';
 import { GestionvideoComponent } from './gestionvideo/gestionvideo.component';
+import { CalendrierFormationsComponent } from './calendrier-formations/calendrier-formations.component';
 
 
 @NgModule({
@@ -73,6 +74,7 @@ import { GestionvideoComponent } from './gestionvideo/gestionvideo.component';
     GestionuserComponent,
     FormationEnLigneComponent,
     GestionvideoComponent,
+    CalendrierFormationsComponent,
   ],
   imports: [
     BrowserModule,

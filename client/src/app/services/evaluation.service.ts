@@ -20,6 +20,12 @@ export class EvaluationService {
     return this.http.post(`${this.baseUrl}/evaluations/register`, { trainingId, userId });
   }
 
+  registerGuest(trainingId: string, name: string, email: string): Observable<any> {
+    const guestData = { trainingId, name, email };
+    // This endpoint must match the one you defined in your backend routes
+    return this.http.post(`${this.baseUrl}/guest/register`, guestData);
+  }
+
   // Update evaluation by trainingId and evaluationId
   updateEvaluation(trainingId: string, evaluationId: string, updatedEvaluation: any): Observable<any> {
     return this.http.put(`${this.baseUrl}/evaluations/${evaluationId}`, updatedEvaluation);

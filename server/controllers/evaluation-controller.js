@@ -179,4 +179,46 @@ module.exports = {
       res.status(400).json({ message: error.toString() });
     }
   },
+
+getWeeklyTrainingsByUser: async (req, res) => {
+  try {
+    const userId = req.params.userId;
+    const startParam = req.query.start; // Expect ISO string e.g. '2025-06-30T00:00:00Z'
+    const endParam = req.query.end;
+
+    if (!startParam || !endParam) {
+      return res.status(400).json({ message: 'Missing start or end date query parameters' });
+    }
+
+    const weekStart = new Date(startParam);
+    const weekEnd = new Date(endParam);
+
+    const evaluations = await Evaluation.find({ user: userId })
+      .populate({
+        path: 'training',
+        match: {
+          date_debut: { $gte: weekStart, $lte: weekEnd }
+        },
+        select: 'theme_formation date_debut date_fin horaire_debut horaire_fin lieu_de_deroulement'
+      });
+
+    const weeklyFormations = evaluations
+      .filter(e => e.training)
+      .map(e => ({
+        id: e.training._id,
+        title: e.training.theme_formation,
+        date: e.training.date_debut,
+        start: e.training.horaire_debut,
+        end: e.training.horaire_fin,
+        location: e.training.lieu_de_deroulement
+      }));
+
+    res.status(200).json(weeklyFormations);
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: "Erreur serveur lors de la récupération des formations de la semaine" });
+  }
+}
+
 };

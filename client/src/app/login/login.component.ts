@@ -2,60 +2,78 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Userinfo } from '../services/userinfo';
-import { finalize } from 'rxjs/operators';
+import { finalize, switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
 
 @Component({
-    selector: 'app-login',
-    templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-    email: string = '';
-    password: string = '';
-    alertMessage: string = '';
-    alertType: 'success' | 'error' | 'warning' = 'success';
-    showAlert: boolean = false;
-    loading = false;
+  email: string = '';
+  password: string = '';
+  
+  // State management for UI
+  showAlert: boolean = false;
+  alertMessage: string = '';
+  alertType: 'success' | 'error' | 'warning' = 'success';
+  loading = false; // To disable button and show spinner
 
-    constructor(private router: Router, private authService: AuthService) { }
+  constructor(private router: Router, private authService: AuthService) { }
 
-    showAlertMessage(message: string, type: 'success' | 'error' | 'warning') {
-        this.alertMessage = message;
-        this.alertType = type;
-        this.showAlert = true;
+  showAlertMessage(message: string, type: 'success' | 'error' | 'warning') {
+    this.alertMessage = message;
+    this.alertType = type;
+    this.showAlert = true;
+  }
+
+  login() {
+    if (!this.email || !this.password) {
+      this.showAlertMessage('⚠️ Veuillez entrer votre email et mot de passe.', 'warning');
+      return;
     }
 
-    login() {
-        if (!this.email || !this.password) {
-            this.showAlertMessage('⚠️ Veuillez entrer votre email et mot de passe.', 'warning');
-            return;
+    this.loading = true; // Start loading
+    this.showAlert = false; // Hide previous alerts
+
+    this.authService.login(this.email, this.password).pipe(
+      // Use switchMap to chain observables instead of nesting subscribe
+      switchMap(() => {
+        // After successful login, get the user info
+        return this.authService.getLoggedInUser();
+      }),
+      // finalize is guaranteed to run on completion or error
+      finalize(() => {
+        this.loading = false; // Stop loading
+      })
+    ).subscribe({
+      next: (decodedToken: Userinfo | null) => {
+        if (!decodedToken) {
+          this.showAlertMessage('❌ Erreur: Impossible de vérifier les informations utilisateur.', 'error');
+          return;
         }
-         this.authService.login(this.email, this.password).subscribe({
-            next: () => { // response is not needed
-                this.showAlertMessage('✅ Connexion réussie !', 'success');
-                 this.authService.getLoggedInUser().subscribe({
-                    next: (decodedToken:Userinfo | null) => {
-                      console.log(decodedToken);
-                      
-                        if (decodedToken && decodedToken.role === 'admin') {
-                            localStorage.setItem('isLoggedIn', 'true'); // ✅ set login flag
-                                this.router.navigate(['/dashboard']);
-                            } else if (decodedToken) {
-                                localStorage.setItem('isLoggedIn', 'true'); // ✅ set login flag
-                                this.router.navigate(['/accueil']);
-                            } else {
-                                 this.showAlertMessage('❌ User role not found.', 'error');
-                            }
-                     },
-                     error: (error) => {
-                         console.error(error)
-                         this.showAlertMessage('❌ Problème lors de la connexion.', 'error');
-                     }
-                })
-            },
-            error: () => {
-                this.showAlertMessage('❌ Erreur de connexion. Vérifiez vos identifiants.', 'error');
-            }
-        });
+
+        // Set login flag and navigate based on role
+        localStorage.setItem('isLoggedIn', 'true'); 
+        
+        if (decodedToken.role === 'admin') {
+          this.router.navigate(['/dashboard']);
+        } else {
+          this.router.navigate(['/accueil']);
+        }
+      },
+      error: (err) => {
+        // This will catch errors from BOTH login() and getLoggedInUser()
+        console.error("Login failed:", err);
+        this.showAlertMessage('❌ Erreur de connexion. Vérifiez vos identifiants.', 'error');
+      }
+    });
+  }
+
+  showPassword: boolean = false;
+    togglePasswordVisibility() {
+
+        this.showPassword = !this.showPassword;
     }
 }

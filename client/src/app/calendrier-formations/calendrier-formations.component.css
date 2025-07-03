@@ -1,0 +1,15 @@
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  .grid-cols-8 {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+  .h-24 {
+    height: 6rem !important;
+  }
+}
+
+.day-column {
+  position: relative;
+  overflow: hidden;
+}
+

@@ -18,6 +18,8 @@ require("./routes/training-routes")(app);
 require("./routes/formateur-routes")(app);
 require("./routes/evaluation-routes")(app);
 require("./routes/video-routes")(app);
+require("./routes/guestFormation-routes")(app);
+
 
 
 

@@ -2,26 +2,42 @@
   <app-navbar></app-navbar>
 
   <!-- Hero Section with Modern Glass Effect -->
-  <section class="relative overflow-hidden" style="height: 400px;">
-    <div class="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800"></div>
+  <section class="relative overflow-hidden" style="height: 400px">
+    <div
+      class="absolute inset-0 bg-gradient-to-br from-indigo-600 via-purple-600 to-indigo-800"
+    ></div>
     <div class="absolute inset-0 bg-black/20"></div>
-    
+
     <!-- Animated background shapes -->
-    <div class="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>
-    <div class="absolute bottom-20 right-20 w-48 h-48 bg-indigo-300/20 rounded-full blur-2xl animate-bounce"></div>
-    
-    <div class="container mx-auto px-6 h-full flex items-center justify-center relative z-10">
+    <div
+      class="absolute top-10 left-10 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"
+    ></div>
+    <div
+      class="absolute bottom-20 right-20 w-48 h-48 bg-indigo-300/20 rounded-full blur-2xl animate-bounce"
+    ></div>
+
+    <div
+      class="container mx-auto px-6 h-full flex items-center justify-center relative z-10"
+    >
       <div class="text-center">
-        <h1 class="text-5xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
-          Les <span class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent">Formations</span>
+        <h1
+          class="text-5xl md:text-6xl font-bold text-white mb-6 animate-fade-in"
+        >
+          Les
+          <span
+            class="bg-gradient-to-r from-yellow-300 to-pink-300 bg-clip-text text-transparent"
+            >Formations</span
+          >
         </h1>
         <p class="text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
           Découvrez nos formations innovantes avec des formateurs experts
         </p>
         <div class="mt-8">
-          <div class="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-md rounded-full text-white border border-white/30">
+          <div
+            class="inline-flex items-center px-6 py-3 bg-white/20 backdrop-blur-md rounded-full text-white border border-white/30"
+          >
             <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 20 20">
-              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
             Formation certifiante disponible
           </div>
@@ -33,19 +49,29 @@
   <!-- Modern Navigation with Floating Cards -->
   <div class="relative -mt-16 z-20">
     <div class="container mx-auto px-6">
-      <div class="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 p-2">
+      <div
+        class="bg-white/90 backdrop-blur-lg rounded-2xl shadow-2xl border border-white/20 p-2"
+      >
         <div class="flex justify-center">
           <div class="inline-flex bg-gray-100 rounded-xl p-1">
             <button
               (click)="filterMode = 'Nos Formations'"
               [ngClass]="{
-                'bg-white text-indigo-600 shadow-lg': filterMode === 'Nos Formations',
-                'text-gray-600 hover:text-indigo-600': filterMode !== 'Nos Formations'
+                'bg-white text-indigo-600 shadow-lg':
+                  filterMode === 'Nos Formations',
+                'text-gray-600 hover:text-indigo-600':
+                  filterMode !== 'Nos Formations'
               }"
               class="px-6 py-3 rounded-lg transition-all duration-300 font-medium"
             >
-              <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"/>
+              <svg
+                class="w-5 h-5 inline mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z"
+                />
               </svg>
               Nos Formations
             </button>
@@ -53,13 +79,23 @@
             <button
               (click)="filterMode = 'Présentiel'"
               [ngClass]="{
-                'bg-white text-indigo-600 shadow-lg': filterMode === 'Présentiel',
-                'text-gray-600 hover:text-indigo-600': filterMode !== 'Présentiel'
+                'bg-white text-indigo-600 shadow-lg':
+                  filterMode === 'Présentiel',
+                'text-gray-600 hover:text-indigo-600':
+                  filterMode !== 'Présentiel'
               }"
               class="px-6 py-3 rounded-lg transition-all duration-300 font-medium"
             >
-              <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+              <svg
+                class="w-5 h-5 inline mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                  clip-rule="evenodd"
+                />
               </svg>
               Présentiel
             </button>
@@ -72,8 +108,14 @@
               }"
               class="px-6 py-3 rounded-lg transition-all duration-300 font-medium"
             >
-              <svg class="w-5 h-5 inline mr-2" fill="currentColor" viewBox="0 0 20 20">
-                <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"/>
+              <svg
+                class="w-5 h-5 inline mr-2"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M2 6a2 2 0 012-2h6a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z"
+                />
               </svg>
               En ligne
             </button>
@@ -84,35 +126,62 @@
   </div>
 
   <!-- Training Icons Grid with Modern Cards -->
-  <div *ngIf="filterMode === 'Nos Formations'" class="container mx-auto px-6 py-16">
+  <div
+    *ngIf="filterMode === 'Nos Formations'"
+    class="container mx-auto px-6 py-16"
+  >
     <div class="text-center mb-12">
-      <h2 class="text-3xl font-bold text-gray-800 mb-4">Choisissez votre domaine</h2>
-      <p class="text-gray-600 max-w-2xl mx-auto">Explorez nos formations spécialisées et trouvez les meilleurs formateurs</p>
+      <h2 class="text-3xl font-bold text-gray-800 mb-4">
+        Choisissez votre domaine
+      </h2>
+      <p class="text-gray-600 max-w-2xl mx-auto">
+        Explorez nos formations spécialisées et trouvez les meilleurs formateurs
+      </p>
     </div>
-    
+
     <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
       <div
         *ngFor="let item of trainingIcons"
         (click)="openTrainersModal(item.name)"
         class="group cursor-pointer"
       >
-        <div class="text-center p-4 hover:bg-white/50 rounded-xl transition-all duration-300 transform hover:scale-105">
-          <!-- Icon without background box -->
-          <div class="w-12 h-12 mx-auto mb-3 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-            <img [src]="item.icon" [alt]="item.name" class="w-12 h-12 filter group-hover:brightness-110">
+        <div
+          class="text-center p-4 hover:bg-white/50 rounded-xl transition-all duration-300 transform hover:scale-105"
+        >
+          <!-- Larger Icon Version -->
+          <div
+            class="w-20 h-20 mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300"
+          >
+            <img
+              [src]="item.icon"
+              [alt]="item.name"
+              class="w-full h-full object-contain filter group-hover:brightness-110"
+            />
           </div>
-          
+
           <!-- Title -->
-          <h3 class="text-sm font-medium text-gray-700 group-hover:text-indigo-600 transition-colors duration-300 mb-2">
+          <h3
+            class="text-sm font-medium text-gray-700 group-hover:text-indigo-600 transition-colors duration-300 mb-2"
+          >
             {{ item.name }}
           </h3>
-          
+
           <!-- Action button -->
           <div class="flex justify-center">
-            <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 group-hover:bg-indigo-100 group-hover:text-indigo-700 transition-all duration-300">
+            <span
+              class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600 group-hover:bg-indigo-100 group-hover:text-indigo-700 transition-all duration-300"
+            >
               Voir formateurs
-              <svg class="w-3 h-3 ml-1 group-hover:translate-x-0.5 transition-transform duration-300" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"/>
+              <svg
+                class="w-3 h-3 ml-1 group-hover:translate-x-0.5 transition-transform duration-300"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clip-rule="evenodd"
+                />
               </svg>
             </span>
           </div>
@@ -121,74 +190,137 @@
     </div>
   </div>
 
-  <!-- Trainers Modal -->
-  <div 
-    *ngIf="showTrainersModal" 
+  <!-- Vertical List of Horizontal Trainer Cards -->
+  <div
+    *ngIf="showTrainersModal"
     class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-sm"
     (click)="closeTrainersModal()"
   >
-    <div 
-      class="bg-white rounded-2xl shadow-2xl max-w-4xl w-full max-h-[80vh] overflow-hidden"
+    <div
+      class="bg-white rounded-2xl shadow-2xl w-full max-w-3xl max-h-[90vh] overflow-hidden"
       (click)="$event.stopPropagation()"
     >
       <!-- Modal Header -->
       <div class="bg-gradient-to-r from-indigo-600 to-purple-600 px-6 py-4">
         <div class="flex items-center justify-between">
           <div>
-            <h3 class="text-xl font-bold text-white">Formateurs spécialisés</h3>
-            <p class="text-indigo-100">{{ selectedTraining }}</p>
+            <h3 class="text-xl font-bold text-white">Nos Formateurs</h3>
+            <p class="text-indigo-100 text-sm">{{ selectedTraining }}</p>
           </div>
-          <button 
+          <button
             (click)="closeTrainersModal()"
             class="text-white hover:text-gray-200 transition-colors duration-200"
           >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
             </svg>
           </button>
         </div>
       </div>
 
-      <!-- Modal Content -->
-      <div class="p-6 overflow-y-auto max-h-[60vh]">
-        <div *ngIf="trainers.length > 0" class="grid gap-6 md:grid-cols-2">
-          <div 
-            *ngFor="let trainer of trainers" 
-            class="bg-gray-50 rounded-xl p-6 hover:bg-gray-100 transition-colors duration-200"
+      <!-- Modal Content - Vertical list of horizontal cards -->
+      <div class="p-6 overflow-y-auto max-h-[70vh]">
+        <div *ngIf="trainers.length > 0" class="space-y-4">
+          <div
+            *ngFor="let trainer of trainers"
+            class="flex items-center justify-between bg-gray-50 rounded-xl p-4 hover:bg-gray-100 transition-colors duration-200"
           >
-            <div class="flex items-start space-x-4">
-              <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold">
+            <!-- Left Side - Trainer Info -->
+            <div class="flex items-center space-x-4 min-w-0">
+              <div
+                class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold flex-shrink-0"
+              >
                 {{ getInitials(trainer.nom_et_prenom) }}
               </div>
-              <div class="flex-1">
-                <h4 class="font-semibold text-gray-800 text-lg">{{ trainer.nom_et_prenom }}</h4>
-                <p class="text-gray-600 mt-1">{{ trainer.email }}</p>
-                <div class="mt-3 flex items-center space-x-2">
-                  <span class="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                    <svg class="w-3 h-3 mr-1" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/>
+              <div class="min-w-0">
+                <h4 class="font-semibold text-gray-800 truncate">
+                  {{ trainer.nom_et_prenom }}
+                </h4>
+                <div class="flex items-center space-x-2 mt-1">
+                  <span class="text-gray-600 text-sm truncate">{{
+                    trainer.specialite || "Expert"
+                  }}</span>
+                  <span
+                    class="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800"
+                  >
+                    <svg
+                      class="w-3 h-3 mr-1"
+                      fill="currentColor"
+                      viewBox="0 0 20 20"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                        clip-rule="evenodd"
+                      />
                     </svg>
                     Certifié
                   </span>
                 </div>
               </div>
             </div>
+
+            <!-- Right Side - Action Buttons -->
+            <div class="flex items-center space-x-3 ml-4">
+              <button
+                class="py-2 px-4 bg-white border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors duration-200 text-sm font-medium flex items-center justify-center whitespace-nowrap"
+              >
+                <svg
+                  class="w-4 h-4 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  />
+                </svg>
+                Message
+              </button>
+            </div>
           </div>
         </div>
 
-        <div *ngIf="trainers.length === 0" class="text-center py-12">
-          <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"/>
+        <div *ngIf="trainers.length === 0" class="text-center py-8">
+          <svg
+            class="w-12 h-12 mx-auto text-gray-400 mb-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197m13.5-9a2.5 2.5 0 11-5 0 2.5 2.5 0 015 0z"
+            />
           </svg>
-          <p class="text-gray-600 text-lg">Aucun formateur disponible pour cette formation</p>
+          <p class="text-gray-600">
+            Aucun formateur disponible pour cette formation
+          </p>
         </div>
       </div>
 
       <!-- Modal Footer -->
-      <div class="bg-gray-50 px-6 py-4 flex justify-end">
-        <button 
+      <div
+        class="bg-gray-50 px-6 py-3 border-t border-gray-200 flex justify-end"
+      >
+        <button
           (click)="closeTrainersModal()"
-          class="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200"
+          class="px-4 py-1.5 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors duration-200 text-sm"
         >
           Fermer
         </button>
@@ -203,25 +335,40 @@
   <section class="py-20">
     <div class="container mx-auto px-6">
       <div class="text-center mb-16">
-        <h2 class="text-4xl font-bold text-gray-800 mb-4">Ce que disent nos étudiants</h2>
-        <p class="text-gray-600 max-w-2xl mx-auto">Découvrez les témoignages de nos apprenants satisfaits</p>
+        <h2 class="text-4xl font-bold text-gray-800 mb-4">
+          Ce que disent nos étudiants
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto">
+          Découvrez les témoignages de nos apprenants satisfaits
+        </p>
       </div>
 
       <div *ngIf="latestComments.length > 0" class="grid md:grid-cols-3 gap-8">
-        <div 
-          *ngFor="let comment of latestComments" 
+        <div
+          *ngFor="let comment of latestComments"
           class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow duration-300 border border-gray-100"
         >
           <div class="flex items-center mb-6">
-            <div class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold">
+            <div
+              class="w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-500 rounded-full flex items-center justify-center text-white font-semibold"
+            >
               {{ getInitials(comment.user.nom_et_prenom) }}
             </div>
             <div class="ml-4">
-              <h4 class="font-semibold text-gray-800">{{ comment.user.nom_et_prenom }}</h4>
+              <h4 class="font-semibold text-gray-800">
+                {{ comment.user.nom_et_prenom }}
+              </h4>
               <div class="flex items-center mt-1">
                 <div class="flex space-x-1">
-                  <svg *ngFor="let star of [1,2,3,4,5]" class="w-4 h-4 text-yellow-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                  <svg
+                    *ngFor="let star of [1, 2, 3, 4, 5]"
+                    class="w-4 h-4 text-yellow-400"
+                    fill="currentColor"
+                    viewBox="0 0 20 20"
+                  >
+                    <path
+                      d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"
+                    />
                   </svg>
                 </div>
               </div>
@@ -234,13 +381,59 @@
       </div>
 
       <div *ngIf="latestComments.length === 0" class="text-center py-16">
-        <svg class="w-16 h-16 mx-auto text-gray-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"/>
+        <svg
+          class="w-16 h-16 mx-auto text-gray-400 mb-4"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+          />
         </svg>
-        <p class="text-gray-600 text-lg">Aucun commentaire disponible pour le moment</p>
+        <p class="text-gray-600 text-lg">
+          Aucun commentaire disponible pour le moment
+        </p>
       </div>
     </div>
   </section>
+
+<div class="overflow-x-auto mt-4">
+  <div class="grid grid-cols-8 text-center font-bold bg-gray-100 sticky top-0 z-10">
+    <div class="p-2 border">Heure</div>
+    <div *ngFor="let day of days" class="p-2 border">{{ day }}</div>
+  </div>
+
+  <div *ngFor="let hour of hours" class="grid grid-cols-8 border-t text-sm">
+    <div class="p-2 border font-semibold">{{ hour }}</div>
+
+    <div *ngFor="let day of days" class="relative h-24 border p-1">
+<ng-container *ngFor="let formation of formationsByDay[day] || []">
+  <div
+    *ngIf="formation.start.slice(0, 2) === hour.slice(0, 2)"
+    class="absolute top-1 left-1 right-1 bg-blue-100 rounded p-2 shadow text-xs"
+  >
+    <div class="font-medium flex items-center gap-1">
+      <img
+        *ngIf="getIcon(formation.title)"
+        [src]="getIcon(formation.title)"
+        class="w-4 h-4"
+      />
+      {{ formation.title }}
+    </div>
+    <div>{{ formation.start }} → {{ formation.end }}</div>
+    <div class="italic text-gray-600">{{ formation.location }}</div>
+  </div>
+</ng-container>
+
+    </div>
+  </div>
+</div>
+
+
 
   <app-footer></app-footer>
 </div>

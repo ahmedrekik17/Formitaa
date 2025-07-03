@@ -1,4 +1,4 @@
-const { createEvaluation, getEvaluationsByTraining, getEvaluationById, updateEvaluation, deleteEvaluation, getLatestEvaluations } = require('../controllers/evaluation-controller');
+const { createEvaluation, getEvaluationsByTraining, getEvaluationById, updateEvaluation, deleteEvaluation, getLatestEvaluations,getWeeklyTrainingsByUser } = require('../controllers/evaluation-controller');
 
 module.exports = (app) => {
     app.post('/api/evaluations/register', createEvaluation); // Register a user for training
@@ -7,4 +7,6 @@ module.exports = (app) => {
     app.put('/api/evaluations/:id', updateEvaluation); // Update an evaluation
     app.delete('/api/evaluations/:id', deleteEvaluation); // Delete an evaluation
     app.get('/api/evaluations/latest', getLatestEvaluations);
+    app.get('/api/evaluations/user/:userId/weekly-trainings', getWeeklyTrainingsByUser);
+
 };

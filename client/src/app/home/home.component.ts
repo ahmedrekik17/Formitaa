@@ -29,4 +29,13 @@ export class HomeComponent {
       }
     );
   }
+
+  getInitials(fullName: string): string {
+  return fullName
+    .split(' ')
+    .map(name => name.charAt(0))
+    .join('')
+    .toUpperCase()
+    .substring(0, 2);
+}
 }
